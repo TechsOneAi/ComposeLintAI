@@ -15,7 +15,8 @@
 [![M8ven Score](https://m8ven.ai/badge/mcp/jalal591-compose-bridge-rapm1x)](https://m8ven.ai/mcp/jalal591-compose-bridge-rapm1x?s=readme)
 [![compose-bridge on DevHunt](https://devhunt.org/badge/compose-bridge.svg)](https://devhunt.org/tool/compose-bridge)
 [![Listed on MCP Market](https://mcpmarket.com/badge/server/composebridge.svg?style=compact)](https://mcpmarket.com/server/composebridge?utm_source=readme&utm_medium=badge)
-## ًں“° Featured In
+
+## 📰 Featured In
 
 <p align="left">
   <a href="https://androidweekly.net/issues/issue-746" title="Android Weekly Issue #746">
@@ -27,8 +28,7 @@
   </a>
 </p>
 
-
-[English](README.md) | [ط§ظ„ط¹ط±ط¨ظٹط©](README_AR.md)
+[English](README.md) | [العربية](README_AR.md)
 
 ---
 
@@ -36,13 +36,13 @@
 
 | Package | Asset | Purpose |
 |---|---|---|
-| **IDE Plugin (Android Studio / IntelliJ)** | [🚀 **Install from JetBrains Marketplace**](https://plugins.jetbrains.com/plugin/35226-composebridge)<br>or [📦 **ComposeLintAI-1.1.9.zip**](https://github.com/TechsOneAi/ComposeLintAI/raw/main/dist/ComposeLintAI-1.1.9.zip) | Official Marketplace install (One-click) or manual install via Settings ➔ Plugins ➔ ⚙️ ➔ Install Plugin from Disk... |
-| **Compose Runtime Library (Release & Debug)** | [📦 **composebridge-runtime-release.aar**](https://github.com/TechsOneAi/ComposeLintAI/raw/main/dist/composebridge-runtime-release.aar) | Core registries (~9KB). Required in implementation for production-safe APK builds |
-| **Compose Agent Library (Debug Only)** | [📦 **composebridge-agent-release.aar**](https://github.com/TechsOneAi/ComposeLintAI/raw/main/dist/composebridge-agent-release.aar) | Visual overlays, touch inspector, and WebSocket bridge. Put in debugImplementation |
+| **IDE Plugin (Android Studio / IntelliJ)** | [🚀 **Install from JetBrains Marketplace**](https://plugins.jetbrains.com/plugin/35226-composebridge)<br>or [📦 **ComposeLintAI-1.1.9.zip**](https://github.com/TechsOneAi/ComposeLintAI/raw/main/dist/ComposeLintAI-1.1.9.zip) | Official Marketplace install (One-click) or manual install via `Settings` ➔ `Plugins` ➔ `⚙️` ➔ `Install Plugin from Disk...` |
+| **Compose Runtime Library (Release & Debug)** | [📦 **composebridge-runtime-release.aar**](https://github.com/TechsOneAi/ComposeLintAI/raw/main/dist/composebridge-runtime-release.aar) | Core registries (~9KB). Required in `implementation` for production-safe APK builds |
+| **Compose Agent Library (Debug Only)** | [📦 **composebridge-agent-release.aar**](https://github.com/TechsOneAi/ComposeLintAI/raw/main/dist/composebridge-agent-release.aar) | Visual overlays, touch inspector, and WebSocket bridge. Put in `debugImplementation` |
 
 ---
 
-## ًں“¸ Visual Demo
+## 📸 Visual Demo
 
 Watch ComposeLintAI visually edit a running Jetpack Compose UI live:
 
@@ -60,22 +60,22 @@ Watch ComposeLintAI visually edit a running Jetpack Compose UI live:
 
 ---
 
-## ًں”„ Upgrading from v1.1.x to v1.1.9
+## 🔄 Upgrading from v1.1.x to v1.1.9
 
 Upgrading from ComposeLintAI v1.1.x to v1.1.9 is straightforward and involves **zero breaking changes** in your codebase or Gradle configurations:
 
-1. **Update the IDE Plugin:** Install the latest `dist/ComposeLintAI-1.1.9.zip` in Android Studio (**Settings** â‍” **Plugins** â‍” **Install Plugin from Disk...**) and restart the IDE.
+1. **Update the IDE Plugin:** Install the latest `dist/ComposeLintAI-1.1.9.zip` in Android Studio (**Settings** ➔ **Plugins** ➔ **Install Plugin from Disk...**) and restart the IDE.
 2. **Update Android AAR:** Replace `composebridge-agent-release.aar` in your app module's `libs/` folder with the updated build from `dist/composebridge-agent-release.aar`, then re-sync Gradle.
 3. **Update Python Server:** If running standalone, re-run `pip install -r requirements.txt --upgrade` in `server/`.
 4. **Breaking Changes:** **None.** All protocol messages, runtime registries, and MCP tool signatures remain 100% backward-compatible.
 
 ---
 
-## âڑ، Quick Start in 60 Seconds
+## ⚡ Quick Start in 60 Seconds
 
 ### Step 1: Install IDE Plugin
 1. Download [ComposeLintAI-1.1.9.zip](dist/ComposeLintAI-1.1.9.zip).
-2. In Android Studio, go to **Settings (Preferences)** â‍” **Plugins** â‍” Click the **âڑ™ï¸ڈ gear icon** â‍” **Install Plugin from Disk...**.
+2. In Android Studio, go to **Settings (Preferences)** ➔ **Plugins** ➔ Click the **⚙️ gear icon** ➔ **Install Plugin from Disk...**.
 3. Select the zip file and restart Android Studio.
 
 ### Step 2: Add Dependencies to your Android App
@@ -91,7 +91,7 @@ dependencies {
 }
 ```
 
-#### âڑ ï¸ڈ Kotlin Multiplatform (KMP) Projects
+#### ⚠️ Kotlin Multiplatform (KMP) Projects
 If your project targets both Android and Desktop (KMP) and you use ComposeLintAI registries inside `commonMain`, **DO NOT use the `.aar` files** (as the desktop compiler cannot read Android `.aar` binaries). Instead, use the source modules as follows:
 
 1. Copy the `agent/runtime` folder into your project (e.g. `composebridge-agent/runtime`).
@@ -146,12 +146,12 @@ class MainActivity : ComponentActivity() {
 ```
 
 ### Step 4: Start the Bridge & Tune Live
-1. In Android Studio, open the **ComposeLintAI** tool window on the right sidebar and click **â–¶ Start Bridge** (this starts the local server and runs `adb reverse tcp:8711 tcp:8711` automatically).
+1. In Android Studio, open the **ComposeLintAI** tool window on the right sidebar and click **▶ Start Bridge** (this starts the local server and runs `adb reverse tcp:8711 tcp:8711` automatically).
 2. Run your app on your device or emulator.
-3. Tap the floating **ًں”§ FAB** on screen to toggle Design Mode.
+3. Tap the floating **🔧 FAB** on screen to toggle Design Mode.
 4. Tap any text, color, or dimension to adjust values in real-time!
 
-### ًںŒچ Remote Connection (Experimental)
+### 🌐 Remote Connection (Experimental)
 
 Tune your running Compose UI over the internet (cellular data, separate Wi-Fi networks, or remote testing) without a physical USB cable using **Tailscale Funnel**:
 
@@ -193,7 +193,7 @@ By default, Tailscale disables Funnel unless granted by your Access Control List
 
 ##### Step 4: Connect on your Mobile Device
 1. Launch your app (with ComposeLintAI Agent enabled).
-2. Tap the floating Design Mode button ًںژ¨ -> **Connection Settings**.
+2. Tap the floating Design Mode button 🎨 -> **Connection Settings**.
 3. Select **"Remote"**:
    - Tap **"Scan QR"** and scan the code directly from your computer screen, **OR**
    - Paste the URL via **"Paste from Clipboard"**.
@@ -204,7 +204,7 @@ By default, Tailscale disables Funnel unless granted by your Access Control List
 
 ---
 
-## âڑ™ï¸ڈ How It Works (Under the Hood)
+## ⚙️ How It Works (Under the Hood)
 
 ComposeLintAI operates as a tri-part system coordinating an IDE extension, a surgical AST engine, and an on-device Compose observer:
 
@@ -221,7 +221,7 @@ ComposeLintAI operates as a tri-part system coordinating an IDE extension, a sur
 
 ---
 
-## ًں“گ Architecture & Communication Flow
+## 📐 Architecture & Communication Flow
 
 ComposeLintAI coordinates three interconnected components over a fast local loopback interface:
 
@@ -231,9 +231,9 @@ ComposeLintAI coordinates three interconnected components over a fast local loop
  |                          |                 |   (Python 3.10+ Daemon)    |
  |  [App UI in Compose]     |                 |                            |
  |            |             |   WebSocket     |   server.py (:8711)        |
- |  [:composebridge-agent]  |<===============>|      â”œâ”€â”€ Message Router    |
- |    - Visual Touch Overlay|   (Port 8711)   |      â”œâ”€â”€ AST Splicer       |
- |    - Semantic Inspector  |                 |      â””â”€â”€ PatternJournal    |
+ |  [:composebridge-agent]  |<===============>|      ├── Message Router    |
+ |    - Visual Touch Overlay|   (Port 8711)   |      ├── AST Splicer       |
+ |    - Semantic Inspector  |                 |      └── PatternJournal    |
  |            |             |                 +----------------------------+
  |  [:composebridge-runtime]|                               ||
  |    - TextRegistry        |                               || JSON-RPC
@@ -258,30 +258,30 @@ ComposeLintAI coordinates three interconnected components over a fast local loop
 
 ---
 
-## ًںڑ€ Core Capabilities
+## 🚀 Core Capabilities
 
 | Capability | Description |
 |---|---|
-| **âڑ، Instant Live Tuning** | Tweak colors, paddings, and string contents with **sub-50ms latency**. Changes update dynamically without waiting for Gradle rebuilds. |
-| **ًں§  Semantic Token Intelligence** | Detects whether a modified color or dimension is shared globally. Offers **Split** (create an isolated token for this widget) or **Global** (update theme-wide). |
-| **ًں“‌ Text Editing & Auto-Migration** | Tap any text element to edit wording directly on device. The AST engine automatically wraps raw strings into `BridgeTextRegistry` on first edit. |
-| **ًں’¾ Safe Rollbacks (PatternJournal)** | Every surgical edit is backed up byte-for-byte. The Studio **Changes** tab allows reviewing unified diffs and reverting individual files or all edits with one click. |
-| **ًں¤– Full MCP Server for AI Agents** | 36 tools supporting token discovery, impact analysis, orphan detection, surgical pattern replacement, and safe Gradle compilation validation. |
+| **⚡ Instant Live Tuning** | Tweak colors, paddings, and string contents with **sub-50ms latency**. Changes update dynamically without waiting for Gradle rebuilds. |
+| **🧠 Semantic Token Intelligence** | Detects whether a modified color or dimension is shared globally. Offers **Split** (create an isolated token for this widget) or **Global** (update theme-wide). |
+| **📝 Text Editing & Auto-Migration** | Tap any text element to edit wording directly on device. The AST engine automatically wraps raw strings into `BridgeTextRegistry` on first edit. |
+| **💾 Safe Rollbacks (PatternJournal)** | Every surgical edit is backed up byte-for-byte. The Studio **Changes** tab allows reviewing unified diffs and reverting individual files or all edits with one click. |
+| **🤖 Full MCP Server for AI Agents** | 36 tools supporting token discovery, impact analysis, orphan detection, surgical pattern replacement, and safe Gradle compilation validation. |
 
 ---
 
-## ًں¤– AI Agent Integration (MCP)
+## 🤖 AI Agent Integration (MCP)
 
 ComposeLintAI exposes 36 deep-inspection and code refactoring tools to any AI assistant supporting the **Model Context Protocol (MCP)**. **No physical phone is required to use MCP tools.**
 
-> ًں’، **Ultra-Lightweight Context Window:**
+> 💡 **Ultra-Lightweight Context Window:**
 > ComposeLintAI uses Lazy Loading, so 36 MCP tools consume only ~176 tokens (<1% of context window).
 
 ### Compatible AI Clients:
-- âœ… **Google Antigravity IDE**
-- âœ… **Cursor**
-- âœ… **Claude Desktop**
-- âœ… **Windsurf / Continue**
+- ✅ **Google Antigravity IDE**
+- ✅ **Cursor**
+- ✅ **Claude Desktop**
+- ✅ **Windsurf / Continue**
 
 ### Integration Steps:
 
@@ -310,16 +310,16 @@ Add the ComposeLintAI server configuration to your AI agent's config file (e.g. 
 }
 ```
 
-> âڑ ï¸ڈ **Important:** Any changes made to `mcp_config.json` require starting a **New Chat** in your AI agent interface so that all 36 MCP tools are freshly discovered and initialized.
+> ⚠️ **Important:** Any changes made to `mcp_config.json` require starting a **New Chat** in your AI agent interface so that all 36 MCP tools are freshly discovered and initialized.
 
 #### How to set it up in Android Studio / Antigravity:
 1. Open Android Studio / IntelliJ IDEA.
-2. Go to **Settings** (or Preferences on macOS) â†’ **Tools** â†’ **AI** â†’ **MCP Servers**.
+2. Go to **Settings** (or Preferences on macOS) ➔ **Tools** ➔ **AI** ➔ **MCP Servers**.
 3. Click on the **Installed** tab.
 4. Click on the **"Import JSON file"** button (or **"...Add via JSON"** depending on your IDE version).
 5. Paste the JSON configuration provided above.
 6. Click **OK** or **Apply**.
-7. âڑ ï¸ڈ **Crucial:** Start a **New Chat** (or restart the agent) for the new 36 MCP tools to load and become visible.
+7. ⚠️ **Crucial:** Start a **New Chat** (or restart the agent) for the new 36 MCP tools to load and become visible.
 
 ### Overview of MCP Tools (36 Tools):
 - **Token Discovery & Analysis:** `list_tokens`, `find_token_by_color`, `get_token_impact`, `get_token_siblings`, `get_all_token_groups`, `list_orphans`, `get_naming_convention`.
@@ -330,11 +330,11 @@ Add the ComposeLintAI server configuration to your AI agent's config file (e.g. 
 
 ---
 
-## âڑ ï¸ڈ Honest Limitations & Operational Boundaries
+## ⚠️ Honest Limitations & Operational Boundaries
 
-> ًں“– **Full Technical Disclosure:** For an exhaustive, unvarnished disclosure of operational edge cases and architectural constraints, see **[LIMITATIONS.md](LIMITATIONS.md)**.
+> 📖 **Full Technical Disclosure:** For an exhaustive, unvarnished disclosure of operational edge cases and architectural constraints, see **[LIMITATIONS.md](LIMITATIONS.md)**.
 > 
-> âڑ ï¸ڈ **Key Notice:** **Remote Connection is experimental.** The tool will **safely pause** (`NEEDS_MANUAL_MAPPING`) and refuse to modify code if it cannot find design files (Colors, Dimensions, Strings) until you map them in the **Discovery** tab, protecting your project from accidental code pollution.
+> ⚠️ **Key Notice:** **Remote Connection is experimental.** The tool will **safely pause** (`NEEDS_MANUAL_MAPPING`) and refuse to modify code if it cannot find design files (Colors, Dimensions, Strings) until you map them in the **Discovery** tab, protecting your project from accidental code pollution.
 
 - **Remote Tunnel Stability:** Remote access via Tailscale is experimental. Mobile cellular handoffs or network firewalls can interrupt socket connectivity. USB tethering (`127.0.0.1`) remains recommended for mission-critical zero-latency editing.
 - **Design System Mapping Required:** If the tool cannot locate your design system files automatically, it safely stops and asks for configuration in the Discovery tab rather than writing to arbitrary files.
@@ -352,10 +352,10 @@ Add the ComposeLintAI server configuration to your AI agent's config file (e.g. 
 
 ---
 
-## ًں”§ Troubleshooting & FAQ
+## 🔧 Troubleshooting & FAQ
 
 ### 1. The phone shows `[WS] Connection failed`
-- Ensure the bridge server is running (`ًںں¢ Bridge Running` in Studio or `python server.py` in terminal).
+- Ensure the bridge server is running (`🟢 Bridge Running` in Studio or `python server.py` in terminal).
 - If using USB, verify ADB reverse is active by running:
   ```bash
   adb reverse tcp:8711 tcp:8711
@@ -371,7 +371,7 @@ Add the ComposeLintAI server configuration to your AI agent's config file (e.g. 
 
 ---
 
-## ًں¤‌ Contributing & Community
+## 🤝 Contributing & Community
 
 We welcome contributions! Please review our:
 - **[Contributing Guidelines](CONTRIBUTING.md)**: Development setup, coding standards, and PR process.
@@ -380,13 +380,13 @@ We welcome contributions! Please review our:
 
 ---
 
-## ًں“œ License
+## 📄 License
 
 Distributed under the **[Apache License 2.0](LICENSE)**.
 
 ---
 
-## ًںŒچ Remote Access via Tailscale (WireGuard Secure Tunnel)
+## 🌐 Remote Access via Tailscale (WireGuard Secure Tunnel)
 
 ComposeLintAI v1.1.6 introduces zero-configuration remote access using **Tailscale Funnel**. You can now inspect, tweak, and live-preview Compose UI on physical Android devices over cellular data or remote Wi-Fi networks securely.
 
@@ -397,15 +397,15 @@ ComposeLintAI v1.1.6 introduces zero-configuration remote access using **Tailsca
 
 ### 2. Share Remote from Android Studio
 1. Open the **ComposeLintAI** tool window in Android Studio.
-2. Click **â–¶ Start Bridge** to launch the local WebSocket hub with dynamic 64-character token authentication.
-3. Click **ًںŒچ Share Remote** in the toolbar:
+2. Click **▶ Start Bridge** to launch the local WebSocket hub with dynamic 64-character token authentication.
+3. Click **🌐 Share Remote** in the toolbar:
    - The plugin initiates `tailscale funnel 8711 --bg`.
    - A QR Code modal appears with your secure `wss://<node>.<tailnet>.ts.net` endpoint and session auth token.
 4. (Optional) You can copy the URL or Token, or click **Stop Sharing** to turn off the funnel.
 
 ### 3. Connect from Android Device
 1. Open your debug app with `ComposeLintAIAgent`.
-2. Tap the floating **ًںژ¨** design button to open the toolbar, then tap the **ًںŒچ** remote button.
-3. Tap **ًں“· Scan QR** (or paste connection JSON from clipboard).
+2. Tap the floating **🎨** design button to open the toolbar, then tap the **🌐** remote button.
+3. Tap **📷 Scan QR** (or paste connection JSON from clipboard).
 4. The agent immediately connects securely via TLS/WSS (`wss://...`), validates credentials, and begins live streaming UI edits.
-5. To return to USB/local development, tap **ظ…ط­ظ„ظٹ (127.0.0.1)** in the remote dialog.
+5. To return to USB/local development, tap **Local (127.0.0.1)** in the remote dialog.
