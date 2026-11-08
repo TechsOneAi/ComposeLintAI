@@ -157,6 +157,7 @@ def scan_file_dimensions(content: str) -> List[dict]:
     """Scan for registered dimensions."""
     scopes = get_file_line_scopes(content)
     results = []
+    seen_names = set()
     for match in DIMENSION_REGISTRY.finditer(content):
         name = match.group(1)
         value = match.group(2)
@@ -166,6 +167,7 @@ def scan_file_dimensions(content: str) -> List[dict]:
         column = match.start() - line_start + 1
         scope_obj = scopes[line_num - 1]["enclosing_object"] if line_num <= len(scopes) else None
         
+        seen_names.add(name)
         results.append({
             "name": name,
             "kind": "dimension",
@@ -176,30 +178,32 @@ def scan_file_dimensions(content: str) -> List[dict]:
             "registry": "BridgeDimensionRegistry",
             "scope_object": scope_obj,
         })
-    if not results:
-        for match in STANDARD_DIMENSION.finditer(content):
-            line_num = content[:match.start()].count("\n") + 1
-            # Ignore local variables declared inside functions/composables/lambdas
-            if line_num <= len(scopes) and scopes[line_num - 1]["is_inside_function"]:
-                continue
-            
-            name = match.group(1)
-            value = match.group(2)
-            suffix = match.group(3) if match.lastindex >= 3 else "dp"
-            line_start = content.rfind("\n", 0, match.start()) + 1
-            column = match.start() - line_start + 1
-            scope_obj = scopes[line_num - 1]["enclosing_object"] if line_num <= len(scopes) else None
-            
-            results.append({
-                "name": name,
-                "kind": "dimension",
-                "value": value,
-                "raw_value": f"{value}.{suffix}",
-                "line": line_num,
-                "column": column,
-                "registry": "StandardTheme",
-                "scope_object": scope_obj,
-            })
+    for match in STANDARD_DIMENSION.finditer(content):
+        name = match.group(1)
+        if name in seen_names:
+            continue
+        line_num = content[:match.start()].count("\n") + 1
+        # Ignore local variables declared inside functions/composables/lambdas
+        if line_num <= len(scopes) and scopes[line_num - 1]["is_inside_function"]:
+            continue
+        
+        value = match.group(2)
+        suffix = match.group(3) if match.lastindex >= 3 else "dp"
+        line_start = content.rfind("\n", 0, match.start()) + 1
+        column = match.start() - line_start + 1
+        scope_obj = scopes[line_num - 1]["enclosing_object"] if line_num <= len(scopes) else None
+        
+        seen_names.add(name)
+        results.append({
+            "name": name,
+            "kind": "dimension",
+            "value": value,
+            "raw_value": f"{value}.{suffix}",
+            "line": line_num,
+            "column": column,
+            "registry": "StandardTheme",
+            "scope_object": scope_obj,
+        })
     return results
 
 
@@ -207,6 +211,7 @@ def scan_file_colors(content: str) -> List[dict]:
     """Scan for registered colors."""
     scopes = get_file_line_scopes(content)
     results = []
+    seen_names = set()
     for match in COLOR_REGISTRY.finditer(content):
         name = match.group(1)
         value = match.group(2)
@@ -216,6 +221,7 @@ def scan_file_colors(content: str) -> List[dict]:
         scope_obj = scopes[line_num - 1]["enclosing_object"] if line_num <= len(scopes) else None
         
         raw_val = value if (value.startswith("Color(") or value.startswith("Color.")) else f"Color({value})"
+        seen_names.add(name)
         results.append({
             "name": name,
             "kind": "color",
@@ -226,30 +232,32 @@ def scan_file_colors(content: str) -> List[dict]:
             "registry": "BridgeThemeRegistry",
             "scope_object": scope_obj,
         })
-    if not results:
-        for match in STANDARD_COLOR.finditer(content):
-            line_num = content[:match.start()].count("\n") + 1
-            # Ignore local variables inside functions/composables/lambdas
-            if line_num <= len(scopes) and scopes[line_num - 1]["is_inside_function"]:
-                continue
-                
-            name = match.group(1)
-            value = match.group(2)
-            line_start = content.rfind("\n", 0, match.start()) + 1
-            column = match.start() - line_start + 1
-            scope_obj = scopes[line_num - 1]["enclosing_object"] if line_num <= len(scopes) else None
+    for match in STANDARD_COLOR.finditer(content):
+        name = match.group(1)
+        if name in seen_names:
+            continue
+        line_num = content[:match.start()].count("\n") + 1
+        # Ignore local variables inside functions/composables/lambdas
+        if line_num <= len(scopes) and scopes[line_num - 1]["is_inside_function"]:
+            continue
             
-            raw_val = value if (value.startswith("Color(") or value.startswith("Color.")) else f"Color({value})"
-            results.append({
-                "name": name,
-                "kind": "color",
-                "value": value,
-                "raw_value": raw_val,
-                "line": line_num,
-                "column": column,
-                "registry": "StandardTheme",
-                "scope_object": scope_obj,
-            })
+        value = match.group(2)
+        line_start = content.rfind("\n", 0, match.start()) + 1
+        column = match.start() - line_start + 1
+        scope_obj = scopes[line_num - 1]["enclosing_object"] if line_num <= len(scopes) else None
+        
+        raw_val = value if (value.startswith("Color(") or value.startswith("Color.")) else f"Color({value})"
+        seen_names.add(name)
+        results.append({
+            "name": name,
+            "kind": "color",
+            "value": value,
+            "raw_value": raw_val,
+            "line": line_num,
+            "column": column,
+            "registry": "StandardTheme",
+            "scope_object": scope_obj,
+        })
     return results
 
 

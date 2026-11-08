@@ -1,4 +1,4 @@
-from common.file_ops import is_ignored_path
+from common.file_ops import is_ignored_path, _rank
 # -*- coding: utf-8 -*-
 """
 Dimension source editor module.
@@ -61,12 +61,6 @@ def edit_dimension_in_source(
 
     if not full_path.exists():
         candidates = [c for c in PROJECT_ROOT.rglob(Path(source_file).name) if not is_ignored_path(c, PROJECT_ROOT)]
-        def _rank(p):
-            norm = str(p).replace("\\", "/").lower()
-            if "/commonmain/" in norm: return 0
-            if "/main/" in norm: return 1
-            if "/src/" in norm: return 2
-            return 3
         candidates.sort(key=lambda p: (_rank(p), len(str(p))))
         if not candidates:
             return (False, f"File not found: {source_file}", None)
@@ -170,6 +164,9 @@ def update_token_default(token_name: str, value: str) -> tuple:
     import tempfile
     import os
 
+    # ⭐ تجريد اسم النطاق فور الدخول (Scope Stripping: e.g. AppDesign.CardCorner -> CardCorner)
+    clean_token = token_name.split(".")[-1]
+
     from core.project_root import get_project_root
     p_root = get_project_root()
     file_path = None
@@ -178,7 +175,7 @@ def update_token_default(token_name: str, value: str) -> tuple:
         if candidate_path and candidate_path.exists():
             try:
                 txt = candidate_path.read_text(encoding="utf-8")
-                if f'"{token_name}"' in txt or f'val {token_name}' in txt:
+                if f'"{clean_token}"' in txt or f'val {clean_token}' in txt:
                     file_path = candidate_path
                     break
             except Exception:
@@ -227,7 +224,7 @@ def update_token_default(token_name: str, value: str) -> tuple:
 
     # 1. ابحث عن صيغة الـ Registry: get("cardHeight", 100.dp) أو get("cardHeight", 100f)
     pattern_registry = re.compile(
-        rf'(BridgeDimensionRegistry\.(?:get|getDimension)\(\s*"{re.escape(token_name)}"\s*,\s*)(\d+)(\.dp|\.f)'
+        rf'(BridgeDimensionRegistry\.(?:get|getDimension)\(\s*"{re.escape(clean_token)}"\s*,\s*)(\d+)(\.dp|\.f)'
     )
     match = pattern_registry.search(content)
     auto_wrapped = False
@@ -243,7 +240,7 @@ def update_token_default(token_name: str, value: str) -> tuple:
     else:
         # 2. فحص ما إذا كان التوكن ثابتاً (Hardcoded val cardHeight: Dp = 100.dp)
         pattern_hardcoded = re.compile(
-            rf'([ \t]*val\s+{re.escape(token_name)}\s*(?::\s*Dp)?\s*=\s*)(\d+(?:\.\d+)?)(?:\.dp|f)?'
+            rf'([ \t]*val\s+{re.escape(clean_token)}\s*(?::\s*Dp)?\s*=\s*)(\d+(?:\.\d+)?)(?:\.dp|f)?'
         )
         match_hardcoded = pattern_hardcoded.search(content)
         if match_hardcoded:
@@ -257,10 +254,10 @@ def update_token_default(token_name: str, value: str) -> tuple:
 
             indent_match = re.match(r"^([ \t]*)", full_line)
             indent = indent_match.group(1) if indent_match else "    "
-            wrapped_line = f'{indent}val {token_name}: Dp get() = BridgeDimensionRegistry.get("{token_name}", {clean_display}.dp)'
+            wrapped_line = f'{indent}val {clean_token}: Dp get() = BridgeDimensionRegistry.get("{clean_token}", {clean_display}.dp)'
 
             import_stmt = "import com.composebridge.agent.BridgeDimensionRegistry\n"
-            if "BridgeDimensionRegistry" not in content and import_stmt not in content:
+            if "import com.composebridge.agent.BridgeDimensionRegistry" not in content:
                 pkg_m = re.search(r"package\s+[^\n]+\n", content)
                 if pkg_m:
                     insert_pos = pkg_m.end()
@@ -272,7 +269,7 @@ def update_token_default(token_name: str, value: str) -> tuple:
             auto_wrapped = True
             is_live_capable = True
         else:
-            return (False, f"Token '{token_name}' is not live-capable or not found in {file_path.name}. Wrap it in BridgeDimensionRegistry first.", None)
+            return (False, f"Token '{clean_token}' is not live-capable or not found in {file_path.name}. Wrap it in BridgeDimensionRegistry first.", None)
 
     # نسخة احتياطية
     backup_path = str(file_path) + ".bridge.bak"

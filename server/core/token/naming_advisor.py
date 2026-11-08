@@ -12,31 +12,12 @@ class NamingAdvisorMixin:
     """Mixin class providing token naming conventions and conflict detection for TokenMigrator."""
 
     CONTEXT_RULES = {
-        # ═══ Spacing ═══
-        "Spacer": ("spacing", "gap"),
-        "Arrangement.spacedBy": ("spacing", "gap"),
-        
-        # ═══ Padding / Margin ═══
-        "padding": ("padding",),
-        "margin": ("margin",),
-        
-        # ═══ Sizes ═══
-        "height": ("size", "height"),
-        "width": ("size", "width"),
-        "size": ("size", "icon"),
-        "Modifier.size": ("size", "icon"),
-        "Modifier.width": ("width", "size"),
-        "Modifier.height": ("height", "size"),
-        
-        # ═══ Corners ═══
-        "RoundedCornerShape": ("corner", "radius"),
-        "CircleShape": ("radius",),
-        
-        # ═══ Typography ═══
-        "fontSize": ("font_size", "text_size"),
-        "fontWeight": ("font_weight",),
-        
-        # ═══ Colors ═══
+        "Spacer": ("spacing", "gap"), "Arrangement.spacedBy": ("spacing", "gap"),
+        "padding": ("padding",), "margin": ("margin",),
+        "height": ("size", "height"), "width": ("size", "width"), "size": ("size", "icon"),
+        "Modifier.size": ("size", "icon"), "Modifier.width": ("width", "size"), "Modifier.height": ("height", "size"),
+        "RoundedCornerShape": ("corner", "radius"), "CircleShape": ("radius",),
+        "fontSize": ("font_size", "text_size"), "fontWeight": ("font_weight",),
         "Color(": ("color", "bg", "background", "text_color", "text", "accent", "hero", "primary", "secondary", "surface", "tertiary"),
         ".background(": ("bg", "background", "color", "hero", "primary", "secondary", "surface"),
         "contentColor": ("text_color", "text", "content_color"),
@@ -46,33 +27,17 @@ class NamingAdvisorMixin:
     COMMON_COLORS = ("primary", "secondary", "tertiary", "surface", "background", "error", "outline", "tint", "accent", "pink", "blue", "green", "purple", "red", "yellow", "orange", "teal", "cyan", "gray", "grey", "black", "white")
 
     COLOR_CONTEXT_RULES = {
-        # سياق الألوان: keyword → (prefix)
-        "background": ("bg", "background"),
-        "backgroundColor": ("bg", "background"),
-        "containerColor": ("bg", "container"),
-        "contentColor": ("text_color", "content"),
-        "color =": ("text_color", "content"),
-        "tint": ("tint", "icon_color"),
-        "border": ("border", "stroke"),
-        "borderColor": ("border", "stroke"),
-        "Color(": ("color", "solid"),  # استخدام عام
-        "Brush": ("brush", "gradient"),
+        "background": ("bg", "background"), "backgroundColor": ("bg", "background"),
+        "containerColor": ("bg", "container"), "contentColor": ("text_color", "content"),
+        "color =": ("text_color", "content"), "tint": ("tint", "icon_color"),
+        "border": ("border", "stroke"), "borderColor": ("border", "stroke"),
+        "Color(": ("color", "solid"), "Brush": ("brush", "gradient"),
     }
 
 
 
     def detect_naming_convention(self, token_type: str) -> dict:
-        """
-        Detect the naming convention used in existing tokens.
-        
-        Returns:
-        {
-            "style": "abbreviation" | "full" | "single" | "unknown",
-            "examples": ["xs", "sm", "md", "lg", "xl"],
-            "has_type_suffix": bool,  # مثل paddingSm, cornerMd
-            "common_suffixes": ["_padding", "_corner", "_color"],
-        }
-        """
+        """Detect the naming convention used in existing tokens."""
         files = self.find_all_token_files(token_type)
         all_names = []
         
@@ -447,7 +412,10 @@ class NamingAdvisorMixin:
         Find all existing tokens with same value.
         Returns list of token names.
         """
-        from .project_scanner import ProjectScanner
+        try:
+            from core.project_scanner import ProjectScanner
+        except ImportError:
+            from ..project_scanner import ProjectScanner
         scanner = ProjectScanner(self.project_root)
         report = scanner.scan(include_hardcoded=False)
         

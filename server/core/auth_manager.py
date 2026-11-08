@@ -12,6 +12,15 @@ from typing import Optional
 DEV_TOKEN = os.environ.get("COMPOSEBRIDGE_DEV_TOKEN")
 
 
+def _secure_chmod(p: Path) -> None:
+    """Restricts file permissions to owner read/write (chmod 0o600)."""
+    try:
+        os.chmod(p, 0o600)
+    except Exception:
+        pass
+
+
+
 def set_dev_token(token: Optional[str]):
     """Set or override development token for testing."""
     global DEV_TOKEN
@@ -76,6 +85,7 @@ def get_or_create_auth_token(project_root: Optional[Path] = None, regenerate: bo
                     # Sync to auth_token.txt
                     try:
                         token_txt.write_text(token, encoding="utf-8")
+                        _secure_chmod(token_txt)
                     except Exception:
                         pass
                     return token
@@ -92,11 +102,13 @@ def get_or_create_auth_token(project_root: Optional[Path] = None, regenerate: bo
                 if len(ht) >= 16:
                     state_dir.mkdir(parents=True, exist_ok=True)
                     token_txt.write_text(ht, encoding="utf-8")
+                    _secure_chmod(token_txt)
                     auth_json.write_text(json.dumps({
                         "token": ht,
                         "created_at": time.time(),
                         "entropy_bytes": 32,
                     }, indent=2), encoding="utf-8")
+                    _secure_chmod(auth_json)
                     return ht
         except Exception:
             pass
@@ -108,11 +120,13 @@ def get_or_create_auth_token(project_root: Optional[Path] = None, regenerate: bo
     try:
         state_dir.mkdir(parents=True, exist_ok=True)
         token_txt.write_text(token, encoding="utf-8")
+        _secure_chmod(token_txt)
         auth_json.write_text(json.dumps({
             "token": token,
             "created_at": time.time(),
             "entropy_bytes": 32,
         }, indent=2), encoding="utf-8")
+        _secure_chmod(auth_json)
     except Exception as e:
         print(f"[AUTH] Warning saving auth token in project: {e}")
 
@@ -123,6 +137,7 @@ def get_or_create_auth_token(project_root: Optional[Path] = None, regenerate: bo
         home_token_file = home_state / "auth_token.txt"
         if regenerate or not home_token_file.exists():
             home_token_file.write_text(token, encoding="utf-8")
+            _secure_chmod(home_token_file)
     except Exception:
         pass
 

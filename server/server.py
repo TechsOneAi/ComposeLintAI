@@ -90,7 +90,6 @@ async def main():
     print(f"  Port:         {PORT}")
     print(f"  Project root: {PROJECT_ROOT}")
     print(f"  Rate Limit:   60 requests/minute per IP")
-    print(f"{Color.BOLD}{Color.YELLOW}  🔑 Auth Token: {token_val}{Color.END}")
     print(f"  📁 Saved to:   {token_file}")
     if args.dev_token:
         print(f"  Dev Token:    {args.dev_token} (override)")

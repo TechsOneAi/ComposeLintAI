@@ -1,21 +1,21 @@
-# ComposeBridge 🌉
+# ComposeLintAI 🌉
 
-**Real-time on-device visual editor for Jetpack Compose + Model Context Protocol (MCP) server for AI coding agents.**  
-*Live UI tuning (<50ms latency), AST-guided surgical source code splicing, and autonomous AI-assisted refactoring.*
+**Enterprise AI Governance, Architecture Diagnostics & AST Refactoring Platform for Jetpack Compose + MCP Server.**  
+*Govern AI coding agent technical debt, enforce design systems, diagnose architectural health, and execute surgical source code modifications with zero-rebuild live device inspection.*
 
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.1.20+-purple.svg)](https://kotlinlang.org)
 [![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-1.7.3+-4285F4.svg)](https://developer.android.com/jetpack/compose)
-[![Status](https://img.shields.io/badge/Status-Early%20Access%20%7C%20Tested%20on%20Device-orange.svg)]()
+[![Status](https://img.shields.io/badge/Status-Production%20Ready%20(v1.1.9)-success.svg)]()
 [![DevEx](https://img.shields.io/badge/DevEx-Zero--Rebuild%20Tuning-brightgreen.svg)]()
 [![Latency](https://img.shields.io/badge/Latency-%3C50ms-success.svg)]()
-[![Version](https://img.shields.io/badge/Version-1.1.8-blue.svg)]()
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/JALAL591/compose-bridge/blob/main/LICENSE)
-[![JetBrains Marketplace](https://img.shields.io/badge/JetBrains%20Marketplace-ComposeBridge-blue.svg?logo=jetbrains&logoColor=white)](https://plugins.jetbrains.com/plugin/35226-composebridge)
-[![Glama MCP](https://glama.ai/mcp/servers/JALAL591/compose-bridge/badges/score.svg)](https://glama.ai/mcp/servers/JALAL591/compose-bridge)
+[![Version](https://img.shields.io/badge/Version-1.1.9-blue.svg)]()
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/TechsOneAi/ComposeLintAI/blob/main/LICENSE)
+[![JetBrains Marketplace](https://img.shields.io/badge/JetBrains%20Marketplace-ComposeLintAI-blue.svg?logo=jetbrains&logoColor=white)](https://plugins.jetbrains.com/plugin/35226-composebridge)
+[![Glama MCP](https://glama.ai/mcp/servers/TechsOneAi/ComposeLintAI/badges/score.svg)](https://glama.ai/mcp/servers/TechsOneAi/ComposeLintAI)
 [![M8ven Score](https://m8ven.ai/badge/mcp/jalal591-compose-bridge-rapm1x)](https://m8ven.ai/mcp/jalal591-compose-bridge-rapm1x?s=readme)
 [![compose-bridge on DevHunt](https://devhunt.org/badge/compose-bridge.svg)](https://devhunt.org/tool/compose-bridge)
 [![Listed on MCP Market](https://mcpmarket.com/badge/server/composebridge.svg?style=compact)](https://mcpmarket.com/server/composebridge?utm_source=readme&utm_medium=badge)
-## 📰 Featured In
+## ًں“° Featured In
 
 <p align="left">
   <a href="https://androidweekly.net/issues/issue-746" title="Android Weekly Issue #746">
@@ -28,29 +28,27 @@
 </p>
 
 
-[English](README.md) | [العربية](README_AR.md)
+[English](README.md) | [ط§ظ„ط¹ط±ط¨ظٹط©](README_AR.md)
 
 ---
 
-### 📥 Direct Downloads (v1.1.8)
+### 📥 Direct Downloads (v1.1.9)
 
 | Package | Asset | Purpose |
 |---|---|---|
-| **IDE Plugin (Android Studio / IntelliJ)** | [🚀 **Install from JetBrains Marketplace**](https://plugins.jetbrains.com/plugin/35226-composebridge)<br>or [📥 **ComposeBridgeIntelliJ-1.1.8.zip**](https://github.com/JALAL591/compose-bridge/raw/main/dist/ComposeBridgeIntelliJ-1.1.8.zip) | Official Marketplace install (One-click) or manual install via `Settings` ➔ `Plugins` ➔ `⚙️` ➔ `Install Plugin from Disk...` |
-| **Compose Runtime Library (Release & Debug)** | [📦 **composebridge-runtime-release.aar**](https://github.com/JALAL591/compose-bridge/raw/main/dist/composebridge-runtime-release.aar) | Core registries (~9KB). Required in `implementation` for production-safe APK builds |
-| **Compose Agent Library (Debug Only)** | [📦 **composebridge-agent-release.aar**](https://github.com/JALAL591/compose-bridge/raw/main/dist/composebridge-agent-release.aar) | Visual overlays, touch inspector, and WebSocket bridge. Put in `debugImplementation` |
-| **Python Server & MCP Package** | [📦 **composebridge-server-1.1.8.zip**](https://github.com/JALAL591/compose-bridge/raw/main/dist/composebridge-server-1.1.8.zip) | Standalone modular WebSocket hub & MCP server for AI coding agents |
-| **All-in-One Distribution** | [📦 **ComposeBridge-v1.1.8-AllInOne.zip**](https://github.com/JALAL591/compose-bridge/raw/main/dist/ComposeBridge-v1.1.8-AllInOne.zip) | Complete offline distribution: Plugin, Runtime, Agent, Server, and Docs |
+| **IDE Plugin (Android Studio / IntelliJ)** | [🚀 **Install from JetBrains Marketplace**](https://plugins.jetbrains.com/plugin/35226-composebridge)<br>or [📦 **ComposeLintAI-1.1.9.zip**](https://github.com/TechsOneAi/ComposeLintAI/raw/main/dist/ComposeLintAI-1.1.9.zip) | Official Marketplace install (One-click) or manual install via Settings ➔ Plugins ➔ ⚙️ ➔ Install Plugin from Disk... |
+| **Compose Runtime Library (Release & Debug)** | [📦 **composebridge-runtime-release.aar**](https://github.com/TechsOneAi/ComposeLintAI/raw/main/dist/composebridge-runtime-release.aar) | Core registries (~9KB). Required in implementation for production-safe APK builds |
+| **Compose Agent Library (Debug Only)** | [📦 **composebridge-agent-release.aar**](https://github.com/TechsOneAi/ComposeLintAI/raw/main/dist/composebridge-agent-release.aar) | Visual overlays, touch inspector, and WebSocket bridge. Put in debugImplementation |
 
 ---
 
-## 📸 Visual Demo
+## ًں“¸ Visual Demo
 
-Watch ComposeBridge visually edit a running Jetpack Compose UI live:
+Watch ComposeLintAI visually edit a running Jetpack Compose UI live:
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=Hywyq7cBdDM">
-    <img src="https://img.youtube.com/vi/Hywyq7cBdDM/hqdefault.jpg" alt="Watch ComposeBridge Demo" width="75%" style="border-radius: 8px;" />
+    <img src="https://img.youtube.com/vi/Hywyq7cBdDM/hqdefault.jpg" alt="Watch ComposeLintAI Demo" width="75%" style="border-radius: 8px;" />
   </a>
 </p>
 
@@ -62,22 +60,22 @@ Watch ComposeBridge visually edit a running Jetpack Compose UI live:
 
 ---
 
-## 🔄 Upgrading from v1.1.x to v1.1.8
+## ًں”„ Upgrading from v1.1.x to v1.1.9
 
-Upgrading from ComposeBridge v1.1.x to v1.1.8 is straightforward and involves **zero breaking changes** in your codebase or Gradle configurations:
+Upgrading from ComposeLintAI v1.1.x to v1.1.9 is straightforward and involves **zero breaking changes** in your codebase or Gradle configurations:
 
-1. **Update the IDE Plugin:** Install the latest `dist/ComposeBridgeIntelliJ-1.1.8.zip` in Android Studio (**Settings** ➔ **Plugins** ➔ **Install Plugin from Disk...**) and restart the IDE.
+1. **Update the IDE Plugin:** Install the latest `dist/ComposeLintAI-1.1.9.zip` in Android Studio (**Settings** â‍” **Plugins** â‍” **Install Plugin from Disk...**) and restart the IDE.
 2. **Update Android AAR:** Replace `composebridge-agent-release.aar` in your app module's `libs/` folder with the updated build from `dist/composebridge-agent-release.aar`, then re-sync Gradle.
 3. **Update Python Server:** If running standalone, re-run `pip install -r requirements.txt --upgrade` in `server/`.
 4. **Breaking Changes:** **None.** All protocol messages, runtime registries, and MCP tool signatures remain 100% backward-compatible.
 
 ---
 
-## ⚡ Quick Start in 60 Seconds
+## âڑ، Quick Start in 60 Seconds
 
 ### Step 1: Install IDE Plugin
-1. Download [ComposeBridgeIntelliJ-1.1.8.zip](dist/ComposeBridgeIntelliJ-1.1.8.zip).
-2. In Android Studio, go to **Settings (Preferences)** ➔ **Plugins** ➔ Click the **⚙️ gear icon** ➔ **Install Plugin from Disk...**.
+1. Download [ComposeLintAI-1.1.9.zip](dist/ComposeLintAI-1.1.9.zip).
+2. In Android Studio, go to **Settings (Preferences)** â‍” **Plugins** â‍” Click the **âڑ™ï¸ڈ gear icon** â‍” **Install Plugin from Disk...**.
 3. Select the zip file and restart Android Studio.
 
 ### Step 2: Add Dependencies to your Android App
@@ -93,8 +91,8 @@ dependencies {
 }
 ```
 
-#### ⚠️ Kotlin Multiplatform (KMP) Projects
-If your project targets both Android and Desktop (KMP) and you use ComposeBridge registries inside `commonMain`, **DO NOT use the `.aar` files** (as the desktop compiler cannot read Android `.aar` binaries). Instead, use the source modules as follows:
+#### âڑ ï¸ڈ Kotlin Multiplatform (KMP) Projects
+If your project targets both Android and Desktop (KMP) and you use ComposeLintAI registries inside `commonMain`, **DO NOT use the `.aar` files** (as the desktop compiler cannot read Android `.aar` binaries). Instead, use the source modules as follows:
 
 1. Copy the `agent/runtime` folder into your project (e.g. `composebridge-agent/runtime`).
 2. In `settings.gradle.kts` (or `settings.gradle`), include the runtime module:
@@ -126,18 +124,18 @@ If your project targets both Android and Desktop (KMP) and you use ComposeBridge
 ### Step 3: Initialize in MainActivity (Debug)
 ```kotlin
 // MainActivity.kt
-import com.composebridge.agent.ComposeBridgeAgent
+import com.composebridge.agent.ComposeLintAIAgent
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         
         // Start bridge connection (automatically connects to local hub)
-        ComposeBridgeAgent.start(context = this, serverUrl = "ws://127.0.0.1:8711")
+        ComposeLintAIAgent.start(context = this, serverUrl = "ws://127.0.0.1:8711")
 
         setContent {
-            // Wrap root content in ComposeBridgeAgent.Root
-            ComposeBridgeAgent.Root {
+            // Wrap root content in ComposeLintAIAgent.Root
+            ComposeLintAIAgent.Root {
                 MyApplicationTheme {
                     MainScreen()
                 }
@@ -148,12 +146,12 @@ class MainActivity : ComponentActivity() {
 ```
 
 ### Step 4: Start the Bridge & Tune Live
-1. In Android Studio, open the **ComposeBridge** tool window on the right sidebar and click **▶ Start Bridge** (this starts the local server and runs `adb reverse tcp:8711 tcp:8711` automatically).
+1. In Android Studio, open the **ComposeLintAI** tool window on the right sidebar and click **â–¶ Start Bridge** (this starts the local server and runs `adb reverse tcp:8711 tcp:8711` automatically).
 2. Run your app on your device or emulator.
-3. Tap the floating **🔧 FAB** on screen to toggle Design Mode.
+3. Tap the floating **ًں”§ FAB** on screen to toggle Design Mode.
 4. Tap any text, color, or dimension to adjust values in real-time!
 
-### 🌍 Remote Connection (Experimental)
+### ًںŒچ Remote Connection (Experimental)
 
 Tune your running Compose UI over the internet (cellular data, separate Wi-Fi networks, or remote testing) without a physical USB cable using **Tailscale Funnel**:
 
@@ -189,13 +187,13 @@ By default, Tailscale disables Funnel unless granted by your Access Control List
 3. **Leave this terminal open** (Tailscale Funnel must remain active).
 
 ##### Step 3: Get Connection Link in Android Studio / IntelliJ Plugin
-1. Open the **ComposeBridge** tool window on the right sidebar.
+1. Open the **ComposeLintAI** tool window on the right sidebar.
 2. Click the **"Share Remote"** button.
 3. A dialog will open displaying a **QR Code** and your secure connection URL (`wss://...`).
 
 ##### Step 4: Connect on your Mobile Device
-1. Launch your app (with ComposeBridge Agent enabled).
-2. Tap the floating Design Mode button 🎨 -> **Connection Settings**.
+1. Launch your app (with ComposeLintAI Agent enabled).
+2. Tap the floating Design Mode button ًںژ¨ -> **Connection Settings**.
 3. Select **"Remote"**:
    - Tap **"Scan QR"** and scan the code directly from your computer screen, **OR**
    - Paste the URL via **"Paste from Clipboard"**.
@@ -206,26 +204,26 @@ By default, Tailscale disables Funnel unless granted by your Access Control List
 
 ---
 
-## ⚙️ How It Works (Under the Hood)
+## âڑ™ï¸ڈ How It Works (Under the Hood)
 
-ComposeBridge operates as a tri-part system coordinating an IDE extension, a surgical AST engine, and an on-device Compose observer:
+ComposeLintAI operates as a tri-part system coordinating an IDE extension, a surgical AST engine, and an on-device Compose observer:
 
 - **Android Studio / IntelliJ Plugin:**
   Manages background Python server processes, displays real-time connection status, generates Tailscale WireGuard QR codes for remote WAN tunnels, and provides visual tabs (`Changes`, `Tokens`, `Orphans`, `Patterns`, `Status`) with unified diff review.
 - **Python Server & Tree-sitter AST Engine:**
   Runs an asynchronous WebSocket hub on port `8711`. When an edit arrives, Tree-sitter parses the Kotlin syntax tree and performs **surgical code splicing** without disturbing un-targeted code, formatting, or comments. Employs atomic file locks (`_atomic_write_text`) with CRLF line-ending preservation.
 - **Android Agent (`:composebridge-agent`):**
-  Renders a zero-overhead hit-testing overlay via `ComposeBridgeAgent.Root`. Evaluates touch gestures, maps coordinates to semantic node bounds using `CompositionRegistry`, and applies overrides locally (<50ms) through `BridgeThemeRegistry`, `BridgeDimensionRegistry`, and `BridgeTextRegistry` so the UI responds instantaneously.
+  Renders a zero-overhead hit-testing overlay via `ComposeLintAIAgent.Root`. Evaluates touch gestures, maps coordinates to semantic node bounds using `CompositionRegistry`, and applies overrides locally (<50ms) through `BridgeThemeRegistry`, `BridgeDimensionRegistry`, and `BridgeTextRegistry` so the UI responds instantaneously.
 - **PatternJournal & Rollback Engine:**
   Before touching any source file, a pristine snapshot is verified with Tree-sitter and preserved as `.bridge.bak`. Rollbacks prioritize Git tracking (`git checkout -- <file>`), safely falling back to byte-level `.bridge.bak` restoration for untracked files.
 - **Model Context Protocol (MCP Server):**
-  Exposes 34 structured tools over stdio/JSON-RPC, enabling autonomous AI coding assistants (Antigravity, Cursor, Claude) to discover design tokens, detect orphans, suggest splits, and validate builds independently without requiring a physical phone connected.
+  Exposes 36 structured tools over stdio/JSON-RPC, enabling autonomous AI coding assistants (Antigravity, Cursor, Claude) to discover design tokens, detect orphans, suggest splits, and validate builds independently without requiring a physical phone connected.
 
 ---
 
-## 📐 Architecture & Communication Flow
+## ًں“گ Architecture & Communication Flow
 
-ComposeBridge coordinates three interconnected components over a fast local loopback interface:
+ComposeLintAI coordinates three interconnected components over a fast local loopback interface:
 
 ```text
  +--------------------------+                 +----------------------------+
@@ -233,9 +231,9 @@ ComposeBridge coordinates three interconnected components over a fast local loop
  |                          |                 |   (Python 3.10+ Daemon)    |
  |  [App UI in Compose]     |                 |                            |
  |            |             |   WebSocket     |   server.py (:8711)        |
- |  [:composebridge-agent]  |<===============>|      ├── Message Router    |
- |    - Visual Touch Overlay|   (Port 8711)   |      ├── AST Splicer       |
- |    - Semantic Inspector  |                 |      └── PatternJournal    |
+ |  [:composebridge-agent]  |<===============>|      â”œâ”€â”€ Message Router    |
+ |    - Visual Touch Overlay|   (Port 8711)   |      â”œâ”€â”€ AST Splicer       |
+ |    - Semantic Inspector  |                 |      â””â”€â”€ PatternJournal    |
  |            |             |                 +----------------------------+
  |  [:composebridge-runtime]|                               ||
  |    - TextRegistry        |                               || JSON-RPC
@@ -249,41 +247,41 @@ ComposeBridge coordinates three interconnected components over a fast local loop
                                               |    - Token Split / Scanner |
                                               |  [Autonomous MCP Agents]   |
                                               |    - Antigravity / Claude  |
-                                              |    - 34 Standard MCP Tools |
+                                              |    - 36 Standard MCP Tools |
                                               +----------------------------+
 ```
 
-1. **On-Device Agent (`:composebridge-agent`):** Injected via `ComposeBridgeAgent.Root`. Renders non-intrusive hit-testing overlays, extracts semantic metadata, and transmits change requests over local WebSocket (`ws://127.0.0.1:8711`).
+1. **On-Device Agent (`:composebridge-agent`):** Injected via `ComposeLintAIAgent.Root`. Renders non-intrusive hit-testing overlays, extracts semantic metadata, and transmits change requests over local WebSocket (`ws://127.0.0.1:8711`).
 2. **Decoupled Runtime (`:composebridge-runtime`):** Standalone ~9KB runtime containing registry singletons (`BridgeTextRegistry`, `BridgeThemeRegistry`, `BridgeDimensionRegistry`). Ensures production Release builds compile with zero overhead without packaging debug overlays.
 3. **Local Bridge Server (`server.py`):** Acts as the central event hub and Kotlin AST manipulation engine. Applies deterministic changes using file write-locks, atomic rewrites, and maintains a byte-level `.bridge.bak` rollback journal.
-4. **Model Context Protocol (MCP Server):** Exposes 34 structured tools allowing AI pair programmers (Antigravity, Claude, Cursor) to autonomously analyze token usage, suggest token splits, and execute multi-file refactorings.
+4. **Model Context Protocol (MCP Server):** Exposes 36 structured tools allowing AI pair programmers (Antigravity, Claude, Cursor) to autonomously analyze token usage, suggest token splits, and execute multi-file refactorings.
 
 ---
 
-## 🚀 Core Capabilities
+## ًںڑ€ Core Capabilities
 
 | Capability | Description |
 |---|---|
-| **⚡ Instant Live Tuning** | Tweak colors, paddings, and string contents with **sub-50ms latency**. Changes update dynamically without waiting for Gradle rebuilds. |
-| **🧠 Semantic Token Intelligence** | Detects whether a modified color or dimension is shared globally. Offers **Split** (create an isolated token for this widget) or **Global** (update theme-wide). |
-| **📝 Text Editing & Auto-Migration** | Tap any text element to edit wording directly on device. The AST engine automatically wraps raw strings into `BridgeTextRegistry` on first edit. |
-| **💾 Safe Rollbacks (PatternJournal)** | Every surgical edit is backed up byte-for-byte. The Studio **Changes** tab allows reviewing unified diffs and reverting individual files or all edits with one click. |
-| **🤖 Full MCP Server for AI Agents** | 34 tools supporting token discovery, impact analysis, orphan detection, surgical pattern replacement, and safe Gradle compilation validation. |
+| **âڑ، Instant Live Tuning** | Tweak colors, paddings, and string contents with **sub-50ms latency**. Changes update dynamically without waiting for Gradle rebuilds. |
+| **ًں§  Semantic Token Intelligence** | Detects whether a modified color or dimension is shared globally. Offers **Split** (create an isolated token for this widget) or **Global** (update theme-wide). |
+| **ًں“‌ Text Editing & Auto-Migration** | Tap any text element to edit wording directly on device. The AST engine automatically wraps raw strings into `BridgeTextRegistry` on first edit. |
+| **ًں’¾ Safe Rollbacks (PatternJournal)** | Every surgical edit is backed up byte-for-byte. The Studio **Changes** tab allows reviewing unified diffs and reverting individual files or all edits with one click. |
+| **ًں¤– Full MCP Server for AI Agents** | 36 tools supporting token discovery, impact analysis, orphan detection, surgical pattern replacement, and safe Gradle compilation validation. |
 
 ---
 
-## 🤖 AI Agent Integration (MCP)
+## ًں¤– AI Agent Integration (MCP)
 
-ComposeBridge exposes 34 deep-inspection and code refactoring tools to any AI assistant supporting the **Model Context Protocol (MCP)**. **No physical phone is required to use MCP tools.**
+ComposeLintAI exposes 36 deep-inspection and code refactoring tools to any AI assistant supporting the **Model Context Protocol (MCP)**. **No physical phone is required to use MCP tools.**
 
-> 💡 **Ultra-Lightweight Context Window:**
-> ComposeBridge uses Lazy Loading, so 34 MCP tools consume only ~176 tokens (<1% of context window).
+> ًں’، **Ultra-Lightweight Context Window:**
+> ComposeLintAI uses Lazy Loading, so 36 MCP tools consume only ~176 tokens (<1% of context window).
 
 ### Compatible AI Clients:
-- ✅ **Google Antigravity IDE**
-- ✅ **Cursor**
-- ✅ **Claude Desktop**
-- ✅ **Windsurf / Continue**
+- âœ… **Google Antigravity IDE**
+- âœ… **Cursor**
+- âœ… **Claude Desktop**
+- âœ… **Windsurf / Continue**
 
 ### Integration Steps:
 
@@ -295,7 +293,7 @@ pip install -r requirements.txt
 ```
 
 #### Step 2: Configure `mcp_config.json`
-Add the ComposeBridge server configuration to your AI agent's config file (e.g. in `~/.gemini/config/mcp_config.json` or your IDE configuration):
+Add the ComposeLintAI server configuration to your AI agent's config file (e.g. in `~/.gemini/config/mcp_config.json` or your IDE configuration):
 
 ```json
 {
@@ -312,18 +310,18 @@ Add the ComposeBridge server configuration to your AI agent's config file (e.g. 
 }
 ```
 
-> ⚠️ **Important:** Any changes made to `mcp_config.json` require starting a **New Chat** in your AI agent interface so that all 34 MCP tools are freshly discovered and initialized.
+> âڑ ï¸ڈ **Important:** Any changes made to `mcp_config.json` require starting a **New Chat** in your AI agent interface so that all 36 MCP tools are freshly discovered and initialized.
 
 #### How to set it up in Android Studio / Antigravity:
 1. Open Android Studio / IntelliJ IDEA.
-2. Go to **Settings** (or Preferences on macOS) → **Tools** → **AI** → **MCP Servers**.
+2. Go to **Settings** (or Preferences on macOS) â†’ **Tools** â†’ **AI** â†’ **MCP Servers**.
 3. Click on the **Installed** tab.
 4. Click on the **"Import JSON file"** button (or **"...Add via JSON"** depending on your IDE version).
 5. Paste the JSON configuration provided above.
 6. Click **OK** or **Apply**.
-7. ⚠️ **Crucial:** Start a **New Chat** (or restart the agent) for the new 34 MCP tools to load and become visible.
+7. âڑ ï¸ڈ **Crucial:** Start a **New Chat** (or restart the agent) for the new 36 MCP tools to load and become visible.
 
-### Overview of MCP Tools (34 Tools):
+### Overview of MCP Tools (36 Tools):
 - **Token Discovery & Analysis:** `list_tokens`, `find_token_by_color`, `get_token_impact`, `get_token_siblings`, `get_all_token_groups`, `list_orphans`, `get_naming_convention`.
 - **Surgical Code Editing:** `set_token`, `set_text`, `add_token`, `rollback_last`.
 - **Pattern Refactoring:** `replace_pattern`, `list_applied_patterns`, `rollback_pattern`, `suggest_token_split`, `detect_conditional_variants`.
@@ -332,11 +330,11 @@ Add the ComposeBridge server configuration to your AI agent's config file (e.g. 
 
 ---
 
-## ⚠️ Honest Limitations & Operational Boundaries
+## âڑ ï¸ڈ Honest Limitations & Operational Boundaries
 
-> 📖 **Full Technical Disclosure:** For an exhaustive, unvarnished disclosure of operational edge cases and architectural constraints, see **[LIMITATIONS.md](LIMITATIONS.md)**.
+> ًں“– **Full Technical Disclosure:** For an exhaustive, unvarnished disclosure of operational edge cases and architectural constraints, see **[LIMITATIONS.md](LIMITATIONS.md)**.
 > 
-> ⚠️ **Key Notice:** **Remote Connection is experimental.** The tool will **safely pause** (`NEEDS_MANUAL_MAPPING`) and refuse to modify code if it cannot find design files (Colors, Dimensions, Strings) until you map them in the **Discovery** tab, protecting your project from accidental code pollution.
+> âڑ ï¸ڈ **Key Notice:** **Remote Connection is experimental.** The tool will **safely pause** (`NEEDS_MANUAL_MAPPING`) and refuse to modify code if it cannot find design files (Colors, Dimensions, Strings) until you map them in the **Discovery** tab, protecting your project from accidental code pollution.
 
 - **Remote Tunnel Stability:** Remote access via Tailscale is experimental. Mobile cellular handoffs or network firewalls can interrupt socket connectivity. USB tethering (`127.0.0.1`) remains recommended for mission-critical zero-latency editing.
 - **Design System Mapping Required:** If the tool cannot locate your design system files automatically, it safely stops and asks for configuration in the Discovery tab rather than writing to arbitrary files.
@@ -354,26 +352,26 @@ Add the ComposeBridge server configuration to your AI agent's config file (e.g. 
 
 ---
 
-## 🔧 Troubleshooting & FAQ
+## ًں”§ Troubleshooting & FAQ
 
 ### 1. The phone shows `[WS] Connection failed`
-- Ensure the bridge server is running (`🟢 Bridge Running` in Studio or `python server.py` in terminal).
+- Ensure the bridge server is running (`ًںں¢ Bridge Running` in Studio or `python server.py` in terminal).
 - If using USB, verify ADB reverse is active by running:
   ```bash
   adb reverse tcp:8711 tcp:8711
   ```
-- If using Wi-Fi without USB, specify your workstation's LAN IP when calling `ComposeBridgeAgent.start(serverUrl = "ws://192.168.1.X:8711")`.
+- If using Wi-Fi without USB, specify your workstation's LAN IP when calling `ComposeLintAIAgent.start(serverUrl = "ws://192.168.1.X:8711")`.
 
 ### 2. Build error: `Duplicate class found in modules`
 - Make sure `composebridge-runtime-release.aar` is added under `implementation(...)` and `composebridge-agent-release.aar` is added under `debugImplementation(...)`. Do not include the agent in release configurations.
 
 ### 3. Edits do not show in Android Studio
 - Ensure you have the project root properly set in `composebridge.json` or pass `--project <path>` when launching `server.py`.
-- Check the **Changes** tab in the ComposeBridge tool window to review pending file diffs.
+- Check the **Changes** tab in the ComposeLintAI tool window to review pending file diffs.
 
 ---
 
-## 🤝 Contributing & Community
+## ًں¤‌ Contributing & Community
 
 We welcome contributions! Please review our:
 - **[Contributing Guidelines](CONTRIBUTING.md)**: Development setup, coding standards, and PR process.
@@ -382,15 +380,15 @@ We welcome contributions! Please review our:
 
 ---
 
-## 📜 License
+## ًں“œ License
 
 Distributed under the **[Apache License 2.0](LICENSE)**.
 
 ---
 
-## 🌍 Remote Access via Tailscale (WireGuard Secure Tunnel)
+## ًںŒچ Remote Access via Tailscale (WireGuard Secure Tunnel)
 
-ComposeBridge v1.1.6 introduces zero-configuration remote access using **Tailscale Funnel**. You can now inspect, tweak, and live-preview Compose UI on physical Android devices over cellular data or remote Wi-Fi networks securely.
+ComposeLintAI v1.1.6 introduces zero-configuration remote access using **Tailscale Funnel**. You can now inspect, tweak, and live-preview Compose UI on physical Android devices over cellular data or remote Wi-Fi networks securely.
 
 ### 1. Prerequisites
 - Install **Tailscale** on your workstation: [https://tailscale.com/download](https://tailscale.com/download)
@@ -398,16 +396,16 @@ ComposeBridge v1.1.6 introduces zero-configuration remote access using **Tailsca
 - Ensure [Tailscale Funnel](https://tailscale.com/kb/1223/funnel) is enabled for your tailnet node.
 
 ### 2. Share Remote from Android Studio
-1. Open the **ComposeBridge** tool window in Android Studio.
-2. Click **▶ Start Bridge** to launch the local WebSocket hub with dynamic 64-character token authentication.
-3. Click **🌍 Share Remote** in the toolbar:
+1. Open the **ComposeLintAI** tool window in Android Studio.
+2. Click **â–¶ Start Bridge** to launch the local WebSocket hub with dynamic 64-character token authentication.
+3. Click **ًںŒچ Share Remote** in the toolbar:
    - The plugin initiates `tailscale funnel 8711 --bg`.
    - A QR Code modal appears with your secure `wss://<node>.<tailnet>.ts.net` endpoint and session auth token.
 4. (Optional) You can copy the URL or Token, or click **Stop Sharing** to turn off the funnel.
 
 ### 3. Connect from Android Device
-1. Open your debug app with `ComposeBridgeAgent`.
-2. Tap the floating **🎨** design button to open the toolbar, then tap the **🌍** remote button.
-3. Tap **📷 Scan QR** (or paste connection JSON from clipboard).
+1. Open your debug app with `ComposeLintAIAgent`.
+2. Tap the floating **ًںژ¨** design button to open the toolbar, then tap the **ًںŒچ** remote button.
+3. Tap **ًں“· Scan QR** (or paste connection JSON from clipboard).
 4. The agent immediately connects securely via TLS/WSS (`wss://...`), validates credentials, and begins live streaming UI edits.
-5. To return to USB/local development, tap **محلي (127.0.0.1)** in the remote dialog.
+5. To return to USB/local development, tap **ظ…ط­ظ„ظٹ (127.0.0.1)** in the remote dialog.

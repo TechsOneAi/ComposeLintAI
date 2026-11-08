@@ -1,0 +1,10 @@
+{
+  "project_name": "ComposeBridge",
+  "version": "1.1.8",
+  "paths": {
+    "bridge_state": "agent/src/androidMain/kotlin/com/composebridge/agent/BridgeState.kt",
+    "app_colors": "app/src/main/java/com/example/app/ui/theme/AppColors.kt",
+    "app_typography": "app/src/main/java/com/example/app/ui/theme/AppTypography.kt",
+    "server": "server"
+  }
+}

@@ -200,203 +200,209 @@ async def handle_batch_edits(websocket: WebSocketServerProtocol, message: dict, 
     from core.project_root import get_project_root
     import json as json_lib
 
-    for i, edit in enumerate(edits):
-        try:
-            edit_type = edit.get("type")
-            # ⭐ متغيرات محلية لكل edit لتفادي Value Bleeding
-            local_new_value = edit.get("new_value", "")
-            local_old_value = edit.get("old_value", "")
-            local_token = edit.get("token_name", "")
-            local_property = edit.get("property", "")
-            local_kind = edit.get("dimension_kind", "dp")
-            local_registry_key = edit.get("registry_key", "")
+    from core.write_lock import acquire_write_lock
 
-            if edit_type == "global_color":
-                result = global_color_edit(
-                    file=edit.get("file"),
-                    line=edit.get("line"),
-                    property_name=local_property or "all",
-                    old_value=local_old_value,
-                    new_value=local_new_value,
-                    token_name=local_token,
-                    project_root=get_project_root(),
-                )
-            elif edit_type == "split_token":
-                occ_raw = edit.get("occurrences", [])
-                if isinstance(occ_raw, str):
-                    try:
-                        occurrences = json_lib.loads(occ_raw)
-                    except Exception:
-                        occurrences = []
-                elif isinstance(occ_raw, list):
-                    occurrences = occ_raw
-                else:
-                    occurrences = []
+    # ⭐ إصلاح إزاحة الأسطر (Line Drift): فرز التعديلات تنازلياً حسب رقم السطر
+    edits_sorted = sorted(edits, key=lambda e: (str(e.get("file") or ""), int(e.get("line") or 0)), reverse=True)
 
-                result = split_token_for_element(
-                    original_token=edit.get("original_token", local_old_value),
-                    original_value=local_old_value,
-                    new_token_name=local_token,
-                    new_value=local_new_value,
-                    element_file=edit.get("file"),
-                    element_line=edit.get("line", 1),
-                    occurrences=occurrences,
-                    project_root=get_project_root(),
-                )
-                if result.get("success"):
-                    from core.pattern_journal import PatternJournal
-                    journal = PatternJournal(get_project_root())
-                    modified = journal.list_modified_files()
-                    log_info(f"[SPLIT] Journal now has {len(modified)} modified files")
-                    for f in modified:
-                        log_info(f"  - {f.get('file')} ({f.get('change_count')} changes)")
-            elif edit_type == "dimension":
-                edit_mode = edit.get("edit_mode", "split")
-                clean_new = str(local_new_value).replace(".dp", "").replace(".sp", "").strip()
-                try:
-                    new_value_float = float(clean_new)
-                    new_val_str = str(int(new_value_float)) if new_value_float.is_integer() else str(new_value_float)
-                except Exception:
-                    new_val_str = clean_new
-                    new_value_float = 0.0
+    with acquire_write_lock():
+        for i, edit in enumerate(edits_sorted):
+            try:
+                edit_type = edit.get("type")
+                # ⭐ متغيرات محلية لكل edit لتفادي Value Bleeding
+                local_new_value = edit.get("new_value", "")
+                local_old_value = edit.get("old_value", "")
+                local_token = edit.get("token_name", "")
+                local_property = edit.get("property", "")
+                local_kind = edit.get("dimension_kind", "dp")
+                local_registry_key = edit.get("registry_key", "")
 
-                clean_old = str(local_old_value).replace(".dp", "").replace(".sp", "").strip()
-
-                if edit_mode == "global":
-                    from core.source_analyzer import global_dimension_edit
-                    result = global_dimension_edit(
-                        value=float(clean_old) if clean_old else 0.0,
-                        kind=local_kind,
-                        new_value=new_value_float,
+                if edit_type == "global_color":
+                    result = global_color_edit(
+                        file=edit.get("file"),
+                        line=edit.get("line"),
+                        property_name=local_property or "all",
+                        old_value=local_old_value,
+                        new_value=local_new_value,
+                        token_name=local_token,
                         project_root=get_project_root(),
-                        property_name=local_property,
+                    )
+                elif edit_type == "split_token":
+                    occ_raw = edit.get("occurrences", [])
+                    if isinstance(occ_raw, str):
+                        try:
+                            occurrences = json_lib.loads(occ_raw)
+                        except Exception:
+                            occurrences = []
+                    elif isinstance(occ_raw, list):
+                        occurrences = occ_raw
+                    else:
+                        occurrences = []
+
+                    result = split_token_for_element(
+                        original_token=edit.get("original_token", local_old_value),
+                        original_value=local_old_value,
+                        new_token_name=local_token,
+                        new_value=local_new_value,
+                        element_file=edit.get("file"),
+                        element_line=edit.get("line", 1),
+                        occurrences=occurrences,
+                        project_root=get_project_root(),
                     )
                     if result.get("success"):
-                        dim_token = local_registry_key or result.get("registry_key") or f"global_{local_property}_{clean_old}"
-                        await broadcast(json.dumps({
-                            "type": "state_update",
-                            "kind": "dimension",
-                            "token": dim_token,
-                            "value": f"{new_val_str}.dp",
-                        }, ensure_ascii=False))
-                        log_info(f"[BATCH-BROADCAST] (dimension-global) {dim_token} = {new_val_str}.dp")
-                else:
-                    result = _apply_dimension_edit(edit, get_project_root())
+                        from core.pattern_journal import PatternJournal
+                        journal = PatternJournal(get_project_root())
+                        modified = journal.list_modified_files()
+                        log_info(f"[SPLIT] Journal now has {len(modified)} modified files")
+                        for f in modified:
+                            log_info(f"  - {f.get('file')} ({f.get('change_count')} changes)")
+                elif edit_type == "dimension":
+                    edit_mode = edit.get("edit_mode", "split")
+                    clean_new = str(local_new_value).replace(".dp", "").replace(".sp", "").strip()
+                    try:
+                        new_value_float = float(clean_new)
+                        new_val_str = str(int(new_value_float)) if new_value_float.is_integer() else str(new_value_float)
+                    except Exception:
+                        new_val_str = clean_new
+                        new_value_float = 0.0
+
+                    clean_old = str(local_old_value).replace(".dp", "").replace(".sp", "").strip()
+
+                    if edit_mode == "global":
+                        from core.source_analyzer import global_dimension_edit
+                        result = global_dimension_edit(
+                            value=float(clean_old) if clean_old else 0.0,
+                            kind=local_kind,
+                            new_value=new_value_float,
+                            project_root=get_project_root(),
+                            property_name=local_property,
+                        )
+                        if result.get("success"):
+                            dim_token = local_registry_key or result.get("registry_key") or f"global_{local_property}_{clean_old}"
+                            await broadcast(json.dumps({
+                                "type": "state_update",
+                                "kind": "dimension",
+                                "token": dim_token,
+                                "value": f"{new_val_str}.dp",
+                            }, ensure_ascii=False))
+                            log_info(f"[BATCH-BROADCAST] (dimension-global) {dim_token} = {new_val_str}.dp")
+                    else:
+                        result = _apply_dimension_edit(edit, get_project_root())
+                        if result.get("success"):
+                            dim_token = local_registry_key or result.get("registry_key") or edit.get("dimension_token") or local_property
+                            await broadcast(json.dumps({
+                                "type": "state_update",
+                                "kind": "dimension",
+                                "token": dim_token,
+                                "value": f"{new_val_str}.dp",
+                            }, ensure_ascii=False))
+                            log_info(f"[BATCH-BROADCAST] (dimension-split) {dim_token} = {new_val_str}.dp")
+                    
                     if result.get("success"):
-                        dim_token = local_registry_key or result.get("registry_key") or edit.get("dimension_token") or local_property
+                        from core.pattern_journal import PatternJournal
+                        journal = PatternJournal(get_project_root())
+                        modified = journal.list_modified_files()
+                        log_info(f"[DIMENSION] Journal now has {len(modified)} modified files")
+                        log_info(f"[DIMENSION] {local_property}: {local_old_value} -> {new_val_str} (mode={edit_mode})")
+                elif edit_type == "text_edit":
+                    from core.state_editor import update_text_in_source
+                    file_p = edit.get("file", "")
+                    line_num = edit.get("line", 1)
+                    old_t = str(edit.get("old_value") or edit.get("old_text", ""))
+                    new_t = str(edit.get("new_value") or edit.get("new_text", ""))
+                    ref_k = edit.get("ref_key") or edit.get("text_reference") or edit.get("target") or edit.get("token_name") or edit.get("property")
+                    if ref_k in ("text", "title", "subtitle", "label", "null", "all"):
+                        ref_k = None
+                    ok, msg, info = update_text_in_source(
+                        file_path=file_p,
+                        line=line_num,
+                        old_text=old_t,
+                        new_text=new_t,
+                        ref_key=ref_k,
+                        project_root=get_project_root(),
+                    )
+                    result = {
+                        "success": ok,
+                        "error": msg if not ok else None,
+                        "message": msg,
+                        "info": info
+                    }
+                    if ok:
                         await broadcast(json.dumps({
                             "type": "state_update",
-                            "kind": "dimension",
-                            "token": dim_token,
-                            "value": f"{new_val_str}.dp",
+                            "kind": "text",
+                            "token": ref_k or f"text_{line_num}",
+                            "value": new_t,
                         }, ensure_ascii=False))
-                        log_info(f"[BATCH-BROADCAST] (dimension-split) {dim_token} = {new_val_str}.dp")
+                        log_info(f"[BATCH-BROADCAST] (text) {ref_k or file_p} = '{new_t}'")
+                else:
+                    result = {"success": False, "error": f"Unknown type: {edit_type}"}
+
+                orig_val = str(local_old_value or edit.get("original_value", ""))
+                orig_tok = str(edit.get("original_token", ""))
+                is_hardcoded = (
+                    orig_val.startswith("#")
+                    or orig_val.startswith("Color(")
+                    or orig_tok.startswith("Color(")
+                    or "0x" in orig_val.lower()
+                ) and not orig_tok.startswith("AppColors.") and not orig_val.startswith("AppColors.")
+                if isinstance(result, dict):
+                    result["converted_hardcoded"] = is_hardcoded
+
+                is_success = result.get("success", False)
+                results.append({
+                    "id": edit.get("id"),
+                    "success": is_success,
+                    "result": result,
+                })
+
+                if is_success:
+                    success_count += 1
+                    if edit_type == "dimension":
+                        log_success(f"[DIMENSION] {local_property}: {local_old_value} -> {new_val_str}")
+                    elif edit_type in ("global_color", "split_token"):
+                        token_name = result.get("token_name") or local_token
+                        val = result.get("new_value") or result.get("new") or result.get("value") or local_new_value
+                        kind = "color" if edit_type == "global_color" else "split"
                     
-                if result.get("success"):
-                    from core.pattern_journal import PatternJournal
-                    journal = PatternJournal(get_project_root())
-                    modified = journal.list_modified_files()
-                    log_info(f"[DIMENSION] Journal now has {len(modified)} modified files")
-                    log_info(f"[DIMENSION] {local_property}: {local_old_value} -> {new_val_str} (mode={edit_mode})")
-            elif edit_type == "text_edit":
-                from core.state_editor import update_text_in_source
-                file_p = edit.get("file", "")
-                line_num = edit.get("line", 1)
-                old_t = str(edit.get("old_value") or edit.get("old_text", ""))
-                new_t = str(edit.get("new_value") or edit.get("new_text", ""))
-                ref_k = edit.get("ref_key") or edit.get("text_reference") or edit.get("target") or edit.get("token_name") or edit.get("property")
-                if ref_k in ("text", "title", "subtitle", "label", "null", "all"):
-                    ref_k = None
-                ok, msg, info = update_text_in_source(
-                    file_path=file_p,
-                    line=line_num,
-                    old_text=old_t,
-                    new_text=new_t,
-                    ref_key=ref_k,
-                    project_root=get_project_root(),
-                )
-                result = {
-                    "success": ok,
-                    "error": msg if not ok else None,
-                    "message": msg,
-                    "info": info
-                }
-                if ok:
-                    await broadcast(json.dumps({
-                        "type": "state_update",
-                        "kind": "text",
-                        "token": ref_k or f"text_{line_num}",
-                        "value": new_t,
-                    }, ensure_ascii=False))
-                    log_info(f"[BATCH-BROADCAST] (text) {ref_k or file_p} = '{new_t}'")
-            else:
-                result = {"success": False, "error": f"Unknown type: {edit_type}"}
+                        await broadcast(json.dumps({
+                            "type": "state_update",
+                            "kind": kind,
+                            "token": token_name or local_property,
+                            "property": f"AppColors.{token_name}" if token_name and kind != "dimension" else "",
+                            "value": str(val),
+                        }, ensure_ascii=False))
+                        log_info(f"[BATCH-BROADCAST] ({kind}) {token_name or local_property} = {val}")
 
-            orig_val = str(local_old_value or edit.get("original_value", ""))
-            orig_tok = str(edit.get("original_token", ""))
-            is_hardcoded = (
-                orig_val.startswith("#")
-                or orig_val.startswith("Color(")
-                or orig_tok.startswith("Color(")
-                or "0x" in orig_val.lower()
-            ) and not orig_tok.startswith("AppColors.") and not orig_val.startswith("AppColors.")
-            if isinstance(result, dict):
-                result["converted_hardcoded"] = is_hardcoded
+                        if edit_type == "global_color" and result.get("replaced_count", 0) > 0:
+                            log_success(f"[GLOBAL] Token {token_name}: replaced {result.get('replaced_count', 0)} occurrences")
+                        elif result.get("updated"):
+                            log_success(f"[UPDATE] Token {token_name}: {local_old_value} -> {val}")
+                        elif edit_type == "global_color":
+                            log_success(f"[GLOBAL] Token {token_name}: replaced {result.get('replaced_count', 0)} occurrences")
+                        elif edit_type == "split_token":
+                            log_success(f"[SPLIT] Token {result.get('new_token')}: created")
+                else:
+                    fail_count += 1
+                    log_error(f"[BATCH] Edit failed: {result.get('error', 'unknown error')}")
 
-            is_success = result.get("success", False)
-            results.append({
-                "id": edit.get("id"),
-                "success": is_success,
-                "result": result,
-            })
+                await safe_send(websocket, {
+                    "type": "batch_progress",
+                    "status": "in_progress",
+                    "current": i + 1,
+                    "total": total,
+                    "current_token": edit.get("token_name"),
+                    "success_so_far": success_count,
+                    "failed_so_far": fail_count,
+                })
 
-            if is_success:
-                success_count += 1
-                if edit_type == "dimension":
-                    log_success(f"[DIMENSION] {local_property}: {local_old_value} -> {new_val_str}")
-                elif edit_type in ("global_color", "split_token"):
-                    token_name = result.get("token_name") or local_token
-                    val = result.get("new_value") or result.get("new") or result.get("value") or local_new_value
-                    kind = "color" if edit_type == "global_color" else "split"
-                    
-                    await broadcast(json.dumps({
-                        "type": "state_update",
-                        "kind": kind,
-                        "token": token_name or local_property,
-                        "property": f"AppColors.{token_name}" if token_name and kind != "dimension" else "",
-                        "value": str(val),
-                    }, ensure_ascii=False))
-                    log_info(f"[BATCH-BROADCAST] ({kind}) {token_name or local_property} = {val}")
-
-                    if edit_type == "global_color" and result.get("replaced_count", 0) > 0:
-                        log_success(f"[GLOBAL] Token {token_name}: replaced {result.get('replaced_count', 0)} occurrences")
-                    elif result.get("updated"):
-                        log_success(f"[UPDATE] Token {token_name}: {local_old_value} -> {val}")
-                    elif edit_type == "global_color":
-                        log_success(f"[GLOBAL] Token {token_name}: replaced {result.get('replaced_count', 0)} occurrences")
-                    elif edit_type == "split_token":
-                        log_success(f"[SPLIT] Token {result.get('new_token')}: created")
-            else:
+            except Exception as e:
                 fail_count += 1
-                log_error(f"[BATCH] Edit failed: {result.get('error', 'unknown error')}")
-
-            await safe_send(websocket, {
-                "type": "batch_progress",
-                "status": "in_progress",
-                "current": i + 1,
-                "total": total,
-                "current_token": edit.get("token_name"),
-                "success_so_far": success_count,
-                "failed_so_far": fail_count,
-            })
-
-        except Exception as e:
-            fail_count += 1
-            results.append({
-                "id": edit.get("id", ""),
-                "success": False,
-                "error": str(e),
-            })
+                results.append({
+                    "id": edit.get("id", ""),
+                    "success": False,
+                    "error": str(e),
+                })
 
     await safe_send(websocket, {
         "type": "batch_edits_ack",

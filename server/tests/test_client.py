@@ -1,3 +1,4 @@
+import pytest
 from pathlib import Path
 import sys
 _SERVER_DIR = Path(__file__).resolve().parent.parent
@@ -10,6 +11,7 @@ import json
 import websockets
 
 
+@pytest.mark.skip(reason="Requires running live bridge server on ws://127.0.0.1:8711")
 async def test():
     uri = "ws://127.0.0.1:8711"
     print(f"🔌 Connecting to {uri}...")
@@ -40,8 +42,6 @@ async def test():
         }))
         response = await ws.recv()
         print(f"📥 Received: {response}")
-        print()
-        print("✅ Test completed successfully!")
 
 
 if __name__ == "__main__":

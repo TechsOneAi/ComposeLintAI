@@ -292,6 +292,45 @@ async def handle_agent_end(websocket: WebSocketServerProtocol, message: dict, ra
     return
 
 # ---------------------------------------------------------
+# ⭐ agent_idle — MCP يُخبر Bridge أن Agent في حالة خمول بعد التعديلات
+# ---------------------------------------------------------
+
+
+async def handle_agent_idle(websocket: WebSocketServerProtocol, message: dict, raw: str) -> None:
+    """إشعار خمول الوكيل وتمرير الملفات الملموسة إلى إضافة IDE لفحص الديون."""
+    touched_files = message.get("touched_files", [])
+    session_id = message.get("session_id", "")
+    log_success(f"🤖 Agent session idle: {len(touched_files)} file(s) touched")
+
+    forwarded = await broadcast(json.dumps({
+        "type": "agent_idle",
+        "session_id": session_id,
+        "touched_files": touched_files,
+    }), exclude=websocket)
+
+    await safe_send(websocket, {
+        "type": "agent_idle_ack",
+        "status": "ok",
+        "forwarded_to": forwarded,
+    })
+    return
+
+# ---------------------------------------------------------
+# ⭐ agent_warning — بث تنبيه فوري إلى إضافة Android Studio
+# ---------------------------------------------------------
+
+
+async def handle_agent_warning(websocket: WebSocketServerProtocol, message: dict, raw: str) -> None:
+    """بث تحذير الوكيل (مثل تكرار التوكنات) إلى إضافة IDE لعرضه كبالون إشعار فوري."""
+    forwarded = await broadcast(json.dumps(message), exclude=websocket)
+    await safe_send(websocket, {
+        "type": "agent_warning_ack",
+        "status": "ok",
+        "forwarded_to": forwarded,
+    })
+    return
+
+# ---------------------------------------------------------
 # ⭐ queue_status — Phone يسأل عن حالة الطابور
 # ---------------------------------------------------------
 
@@ -559,6 +598,8 @@ HANDLERS = {
     "reset_state": handle_reset_state,
     "agent_start": handle_agent_start,
     "agent_end": handle_agent_end,
+    "agent_idle": handle_agent_idle,
+    "agent_warning": handle_agent_warning,
     "queue_status": handle_queue_status,
     "queue_clear": handle_queue_clear,
     "user_sync": handle_user_sync,

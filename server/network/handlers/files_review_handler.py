@@ -38,6 +38,8 @@ async def handle_reject_all_files(websocket: WebSocketServerProtocol, message: d
         "type": "reject_all_files_ack",
         "result": result,
     }, ensure_ascii=False))
+    if result.get("success"):
+        await broadcast(json.dumps({"type": "all_debts_cleared"}, ensure_ascii=False))
     log_info(f"[REJECT_ALL] Reverted: {result.get('reverted_count', 0)} files (forced={result.get('forced', False)})")
     return
 
@@ -187,6 +189,11 @@ async def handle_reject_change(websocket: WebSocketServerProtocol, message: dict
     result = reject_change(file_to_reject, change_id, PROJECT_ROOT)
     if result.get("success"):
         await broadcast_refresh(exclude=None)
+        await broadcast(json.dumps({
+            "type": "debt_cleared",
+            "file": file_to_reject,
+            "fileName": Path(file_to_reject).name
+        }, ensure_ascii=False))
     from core.pattern_journal import PatternJournal
     journal = PatternJournal(PROJECT_ROOT)
     updated_files = journal.list_modified_files()
@@ -218,6 +225,11 @@ async def handle_approve_change(websocket: WebSocketServerProtocol, message: dic
     result = approve_change(file_to_approve, change_id, PROJECT_ROOT)
     if result.get("success"):
         await broadcast_refresh(exclude=None)
+        await broadcast(json.dumps({
+            "type": "debt_cleared",
+            "file": file_to_reject,
+            "fileName": Path(file_to_reject).name
+        }, ensure_ascii=False))
     from core.pattern_journal import PatternJournal
     journal = PatternJournal(PROJECT_ROOT)
     updated_files = journal.list_modified_files()
@@ -250,6 +262,11 @@ async def handle_reject_file(websocket: WebSocketServerProtocol, message: dict, 
     result = journal.reject_file_changes(file_to_reject, force=force)
     if result.get("success"):
         await broadcast_refresh(exclude=None)
+        await broadcast(json.dumps({
+            "type": "debt_cleared",
+            "file": file_to_reject,
+            "fileName": Path(file_to_reject).name
+        }, ensure_ascii=False))
     updated_files = journal.list_modified_files()
     remaining = [{"file": (f.get("file","") if isinstance(f, dict) else str(f)), "name": Path(f.get("file","") if isinstance(f, dict) else str(f)).name, "status": "modified"} for f in updated_files if (f.get("file","") if isinstance(f, dict) else str(f))]
     ack_payload = {

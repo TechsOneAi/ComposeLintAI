@@ -5,6 +5,30 @@ All notable changes to ComposeBridge will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.8] - 2026-11-06
+### Added
+- **Real-Time IDE Diagnostics & Scan (36 MCP Tools):**
+  - Integrated `get_ide_diagnostics` and `scan_project_diagnostics` tools via DaemonCodeAnalyzer topic listener, providing instant AST compilation errors and warnings to AI agents.
+  - Upgraded total MCP tool count to 36 structured tools with full schema annotations.
+- **Visual Builder & Create Mode Foundation:**
+  - Added native device spec profiles (Pixel 7, Samsung S23 Ultra, iPhone 14 Pro, Medium Phone, Tablet 10") with dynamic aspect ratio canvas.
+  - Added AST code generator supporting automated wrapping with `BridgeDimensionRegistry` and `BridgeThemeRegistry`.
+
+### Security & Hardening
+- **Token Protection & CSWSH Defense:**
+  - Removed raw auth token printing from server startup stdout.
+  - Enforced strict owner-only file permissions (`chmod 0o600`) on `auth_token.txt` and `auth.json`.
+  - Removed `null` from WebSocket origin allowlist to prevent Cross-Site WebSocket Hijacking (CSWSH) from sandboxed contexts.
+- **Path Traversal Containment:**
+  - Enforced `assert_inside` checks across all rollback, dimension, and state editor modules, preventing directory traversal attacks.
+
+### Changed
+- **CI & Test Suite Modernization:**
+  - Migrated GitHub Actions CI test runner to `pytest` across all 37 test suites.
+- **Memory Optimization:**
+  - Replaced full file content storage in `SPLICE_JOURNAL` with lightweight diff hunks to eliminate in-memory bloat.
+  - Added `@functools.wraps` decorator preservation to `with_write_lock`.
+
 ## [1.1.7] - 2026-11-03
 ### Fixed
 - **Text Reference Path Resolution (P0):** Correctly prioritizes `AppStrings.kt` (and centralized string files) when editing reference strings (`AppStrings.*`), preventing "Declaration not found" failures when triggered from UI composable call-site files (such as `DashboardScreen.kt`).

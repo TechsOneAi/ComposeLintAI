@@ -12,7 +12,8 @@ Your privacy is paramount. ComposeBridge is designed with a **privacy-first, loc
 - **No Analytics / Telemetry:** There are no analytics trackers, diagnostic telemetry beacons, or advertising frameworks embedded in any part of ComposeBridge (agent, plugin, or server).
 
 ## Network and Communication Scope
-- **Strictly Localhost:** All network transport (WebSocket and HTTP communication) between the Android Studio plugin, the Android runtime agent, and the local MCP server occurs exclusively over local loopback interfaces (`127.0.0.1` / `localhost`).
+- **Strictly Localhost by Default:** By default, all network transport (WebSocket and HTTP communication) between the Android Studio plugin, the Android runtime agent, and the local MCP server occurs exclusively over local loopback interfaces (`127.0.0.1` / `localhost`).
+- **Optional Tailscale Funnel (Opt-In Only):** Remote access via Tailscale Funnel is strictly opt-in and only initiated if you explicitly click "Share Remote" in the Studio toolbar. All traffic is secured via dynamic auth tokens.
 - **No Outbound Data Flow:** Code files, design tokens, syntax highlights, and AST inspection artifacts never leave your local machine and are never transmitted to external cloud servers or third parties.
 
 ## Local Filesystem Access
@@ -28,5 +29,5 @@ ComposeBridge is open source under the Apache-2.0 License. You can inspect all s
 
 ## Contact
 For security disclosures or privacy inquiries, please open an issue on the official GitHub repository:
-https://github.com/JALAL591/compose-bridge
+https://github.com/TechsOneAi/ComposeLintAI
 

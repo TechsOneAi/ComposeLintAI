@@ -12,7 +12,7 @@ We are committed to providing a friendly, safe, and welcoming environment for ev
 ## 🚀 How Can I Contribute?
 
 ### 1. Reporting Bugs
-- Search existing [GitHub Issues](https://github.com/JALAL591/compose-bridge/issues) to verify if the bug has already been reported.
+- Search existing [GitHub Issues](https://github.com/TechsOneAi/ComposeLintAI/issues) to verify if the bug has already been reported.
 - If not, use our **[Bug Report Template](.github/ISSUE_TEMPLATE/bug_report.md)** to provide comprehensive reproduction steps, environment details, and logs.
 
 ### 2. Suggesting Enhancements

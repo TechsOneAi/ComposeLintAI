@@ -1,4 +1,4 @@
-from common.file_ops import is_ignored_path
+from common.file_ops import is_ignored_path, _rank
 # -*- coding: utf-8 -*-
 """
 Theme color editor module.
@@ -44,12 +44,6 @@ def get_app_colors_file() -> Path:
             return p
     matches = [f for f in PROJECT_ROOT.rglob("AppColors.kt") if not is_ignored_path(f, PROJECT_ROOT)]
     if matches:
-        def _rank(p):
-            norm = str(p).replace("\\", "/").lower()
-            if "/commonmain/" in norm: return 0
-            if "/main/" in norm: return 1
-            if "/src/" in norm: return 2
-            return 3
         matches.sort(key=lambda p: (_rank(p), len(str(p))))
         return matches[0]
     return _find_registry_file("AppColors.kt") or (PROJECT_ROOT / "AppColors.kt")
@@ -249,7 +243,7 @@ def update_theme_color(key: str, new_hex: str, expected_checksum: Optional[str] 
         
         # التأكد من وجود import لـ BridgeThemeRegistry
         import_stmt = "import com.composebridge.agent.BridgeThemeRegistry\n"
-        if "BridgeThemeRegistry" not in content and import_stmt not in content:
+        if "import com.composebridge.agent.BridgeThemeRegistry" not in content:
             pkg_m = re.search(r"package\s+[^\n]+\n", content)
             if pkg_m:
                 insert_pos = pkg_m.end()

@@ -17,7 +17,7 @@ try:
 except Exception:
     PROJECT_ROOT = Path(os.environ.get("COMPOSEBRIDGE_ROOT", "."))
 
-from common.file_ops import is_ignored_path, acquire_write_lock, _atomic_write_text, _find_registry_file, assert_inside
+from common.file_ops import is_ignored_path, acquire_write_lock, _atomic_write_text, _find_registry_file, assert_inside, _rank
 from core.ast_finder import surgical_edit, validate_kotlin_syntax
 from core.pattern_journal import PatternJournal
 from .journal_helpers import with_write_lock, _journal_save
@@ -258,9 +258,6 @@ def update_text_in_source(
         else:
             fname = Path(file_path).name
             candidates = [c for c in p_root.rglob(fname) if not is_ignored_path(c, p_root)]
-            def _rank(p):
-                norm = str(p).replace("\\", "/").lower()
-                return 0 if "/commonmain/" in norm else 1 if "/main/" in norm else 2 if "/src/" in norm else 3
             candidates.sort(key=lambda p: (_rank(p), len(str(p))))
             if candidates:
                 full_path = candidates[0]

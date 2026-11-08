@@ -93,6 +93,14 @@ def set_text(token_name: str, new_value: str, file_path: str = None, line: int =
                 if isinstance(info, dict) and "error_code" in info:
                     err_dict["error_code"] = info["error_code"]
                 return json.dumps(err_dict, indent=2, ensure_ascii=False)
+
+            # Record touched file in agent session tracker
+            try:
+                from core.agent_session_tracker import SESSION_TRACKER
+                f_target = file_path or (info.get("file") if isinstance(info, dict) else "AppStrings.kt")
+                SESSION_TRACKER.record_touched_file(f_target, p_root)
+            except Exception:
+                pass
                 
             # Notify Bridge server for live update and IDE plugin refresh
             try:

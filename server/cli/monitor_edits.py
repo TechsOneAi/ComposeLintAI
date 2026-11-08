@@ -37,18 +37,7 @@ def ts():
     return datetime.now().strftime("%H:%M:%S.%f")[:-3]
 
 
-def get_project_root():
-    if "COMPOSEBRIDGE_ROOT" in os.environ:
-        return Path(os.environ["COMPOSEBRIDGE_ROOT"])
-    candidates = [
-        Path.cwd(),
-        Path(__file__).resolve().parent.parent.parent,
-        Path(".").resolve(),
-    ]
-    for c in candidates:
-        if (c / ".composebridge-state").exists() or (c / "build.gradle.kts").exists():
-            return c
-    return Path(".").resolve()
+from core.project_root import get_project_root
 
 
 class RealtimeMonitor:

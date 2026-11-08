@@ -1,18 +1,19 @@
-# ComposeBridge 🌉
+# ComposeLintAI 🌉
 
-> 📖 **إلى أين تتجه أداة ComposeBridge؟** اقرأ [وثيقة الرؤية والمعمارية RFC](docs/architecture/RFC-001-vision.md).
+> 📖 **إلى أين تتجه أداة ComposeLintAI؟** اقرأ [وثيقة الرؤية والمعمارية RFC](docs/architecture/RFC-001-vision.md).
 
-**محرر بصري حي على الجهاز الحقيقي لتطبيقات Jetpack Compose + خادم MCP لوكلاء الذكاء الاصطناعي. تعديل الواجهة لحظياً + تعديل جراحي في الكود المصدري.**
+**منظومة شاملة لحوكمة وكلاء الذكاء الاصطناعي، التشخيص المعماري، والتعديل الجراحي لواجهات Jetpack Compose + خادم MCP.**  
+*حوكمة الديون التقنية للوكلاء لحظياً، فرض منظومة التصميم (Design System)، كشف التشتت المعماري، وإجراء التعديلات الجراحية في الكود المصدري بدقة البايت مع معاينة حية على الأجهزة دون إعادة بناء.*
 
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.1.20+-purple.svg)](https://kotlinlang.org)
 [![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-1.7.3+-4285F4.svg)](https://developer.android.com/jetpack/compose)
 [![Zero Rebuild](https://img.shields.io/badge/DevEx-Zero--Rebuild%20Preview-brightgreen.svg)]()
 [![Latency](https://img.shields.io/badge/Latency-%3C50ms-success.svg)]()
-[![Status](https://img.shields.io/badge/Status-Production%20Ready%20(v1.1.8)-success.svg)]()
+[![Status](https://img.shields.io/badge/Status-Production%20Ready%20(v1.1.9)-success.svg)]()
 [![Scanner Speed](https://img.shields.io/badge/Scanner%20Speed-137ms%20%2F%20146%20files-brightgreen.svg)]()
-[![Version](https://img.shields.io/badge/Version-1.1.8-blue.svg)]()
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/JALAL591/compose-bridge/blob/main/LICENSE)
-[![JetBrains Marketplace](https://img.shields.io/badge/JetBrains%20Marketplace-ComposeBridge-blue.svg?logo=jetbrains&logoColor=white)](https://plugins.jetbrains.com/plugin/35226-composebridge)
+[![Version](https://img.shields.io/badge/Version-1.1.9-blue.svg)]()
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/TechsOneAi/ComposeLintAI/blob/main/LICENSE)
+[![JetBrains Marketplace](https://img.shields.io/badge/JetBrains%20Marketplace-ComposeLintAI-blue.svg?logo=jetbrains&logoColor=white)](https://plugins.jetbrains.com/plugin/35226-composebridge)
 [![M8ven Score](https://m8ven.ai/badge/mcp/jalal591-compose-bridge-rapm1x)](https://m8ven.ai/mcp/jalal591-compose-bridge-rapm1x?s=readme)
 
 ## 📰 Featured In
@@ -27,21 +28,19 @@
   </a>
 </p>
 
-[English](https://github.com/JALAL591/compose-bridge/blob/main/README.md) | [العربية](https://github.com/JALAL591/compose-bridge/blob/main/README_AR.md)
+[English](https://github.com/TechsOneAi/ComposeLintAI/blob/main/README.md) | [العربية](https://github.com/TechsOneAi/ComposeLintAI/blob/main/README_AR.md)
 
 ---
 
-### 📥 التحميل المباشر والتثبيت السريع (v1.1.8)
+### 📥 التحميل المباشر والتثبيت السريع (v1.1.9)
 
 | الحزمة | ملف التثبيت (.zip / .aar) | طريقة التثبيت السريع |
 |---|---|---|
-| **إضافة بيئة التطوير (Android Studio / IntelliJ)** | [🚀 **تثبيت من متجر JetBrains Marketplace الرسمي**](https://plugins.jetbrains.com/plugin/35226-composebridge)<br>أو [📥 **تحميل ComposeBridgeIntelliJ-1.1.8.zip**](https://github.com/JALAL591/compose-bridge/raw/main/dist/ComposeBridgeIntelliJ-1.1.8.zip) | التثبيت بضغطة زر من المتجر مباشرة، أو في Android Studio: `Settings` ➔ `Plugins` ➔ `⚙️` ➔ `Install Plugin from Disk...` |
-| **مكتبة أندرويد لـ Jetpack Compose (Agent)** | [📦 **تحميل composebridge-agent-release.aar**](https://github.com/JALAL591/compose-bridge/raw/main/dist/composebridge-agent-release.aar) | انسخ الملف إلى مجلد `app/libs/` أو ضعه في `debugImplementation` |
-| **مكتبة أندرويد الأساسية (Runtime)** | [📦 **تحميل composebridge-runtime-release.aar**](https://github.com/JALAL591/compose-bridge/raw/main/dist/composebridge-runtime-release.aar) | ضعه في `implementation` لضمان أمان البناء في وضعي Debug و Release |
-| **سيرفر بايثون وخادم MCP** | [📦 **تحميل composebridge-server-1.1.8.zip**](https://github.com/JALAL591/compose-bridge/raw/main/dist/composebridge-server-1.1.8.zip) | حزمة السيرفر المنفصلة لوكلاء الذكاء الاصطناعي والمزامنة |
-| **الحزمة الشاملة المتكاملة (All-in-One)** | [📦 **تحميل ComposeBridge-v1.1.8-AllInOne.zip**](https://github.com/JALAL591/compose-bridge/raw/main/dist/ComposeBridge-v1.1.8-AllInOne.zip) | تجمع الإضافة، العميل، مكتبة الـ Runtime، التوثيق، والسيرفر معاً |
+| **إضافة بيئة التطوير (Android Studio / IntelliJ)** | [🚀 **تثبيت من متجر JetBrains Marketplace الرسمي**](https://plugins.jetbrains.com/plugin/35226-composebridge)<br>أو [📦 **تحميل ComposeLintAI-1.1.9.zip**](https://github.com/TechsOneAi/ComposeLintAI/raw/main/dist/ComposeLintAI-1.1.9.zip) | التثبيت بضغطة زر من المتجر مباشرة، أو في Android Studio: Settings ➔ Plugins ➔ ⚙️ ➔ Install Plugin from Disk... |
+| **مكتبة أندرويد الأساسية (Runtime)** | [📦 **تحميل composebridge-runtime-release.aar**](https://github.com/TechsOneAi/ComposeLintAI/raw/main/dist/composebridge-runtime-release.aar) | ضعه في implementation لضمان أمان البناء في وضعي Debug و Release |
+| **مكتبة أندرويد لـ Jetpack Compose (Agent)** | [📦 **تحميل composebridge-agent-release.aar**](https://github.com/TechsOneAi/ComposeLintAI/raw/main/dist/composebridge-agent-release.aar) | انسخ الملف إلى مجلد pp/libs/ أو ضعه في debugImplementation |
 
-**ComposeBridge** هي حزمة أدوات للمطورين تربط تطبيق Compose (KMP/Android) بمحرر الأكواد أو وكيل الذكاء الاصطناعي الخاص بك.
+**ComposeLintAI** هي حزمة أدوات للمطورين تربط تطبيق Compose (KMP/Android) بمحرر الأكواد أو وكيل الذكاء الاصطناعي الخاص بك.
 
 > [!NOTE]
 > **حالة دعم KMP / Desktop**: دعم KMP/Desktop حالياً في مرحلة **Beta تجريبية**. التركيز الأساسي لإصدار v1.1.6 ينصب على **استقرار منصة أندرويد (Android stability)**.
@@ -61,7 +60,7 @@
 
 <p align="center">
   <a href="https://youtu.be/Hywyq7cBdDM">
-    <img src="https://img.youtube.com/vi/Hywyq7cBdDM/hqdefault.jpg" alt="شاهد العرض الحي — ComposeBridge يعدل جهازاً حقيقياً" width="70%" style="border-radius: 8px;" />
+    <img src="https://img.youtube.com/vi/Hywyq7cBdDM/hqdefault.jpg" alt="شاهد العرض الحي — ComposeLintAI يعدل جهازاً حقيقياً" width="70%" style="border-radius: 8px;" />
   </a>
 </p>
 
@@ -69,7 +68,7 @@
 
 | 1. لوحة تحكم الإضافة وفاحص التوكنز | 2. التعديل الجراحي ومراجعة الفروقات (Diff) | 3. المعاينة المباشرة على شاشة الهاتف |
 |:---:|:---:|:---:|
-| <a href="https://github.com/JALAL591/compose-bridge/blob/main/docs/screenshots/1_composebridge_main_ui.jpg"><img src="https://raw.githubusercontent.com/JALAL591/compose-bridge/main/docs/screenshots/1_composebridge_main_ui.jpg" width="100%" alt="واجهة ComposeBridge الرئيسية" /></a> | <a href="https://github.com/JALAL591/compose-bridge/blob/main/docs/screenshots/2_composebridge_patterns_diff.jpg"><img src="https://raw.githubusercontent.com/JALAL591/compose-bridge/main/docs/screenshots/2_composebridge_patterns_diff.jpg" width="100%" alt="فروقات التعديل الجراحي" /></a> | <a href="https://github.com/JALAL591/compose-bridge/blob/main/docs/screenshots/3_composebridge_live_device_sync.jpg"><img src="https://raw.githubusercontent.com/JALAL591/compose-bridge/main/docs/screenshots/3_composebridge_live_device_sync.jpg" width="100%" alt="المزامنة الحية على الهاتف" /></a> |
+| <a href="https://github.com/TechsOneAi/ComposeLintAI/blob/main/docs/screenshots/1_composebridge_main_ui.jpg"><img src="https://raw.githubusercontent.com/JALAL591/compose-bridge/main/docs/screenshots/1_composebridge_main_ui.jpg" width="100%" alt="واجهة ComposeLintAI الرئيسية" /></a> | <a href="https://github.com/TechsOneAi/ComposeLintAI/blob/main/docs/screenshots/2_composebridge_patterns_diff.jpg"><img src="https://raw.githubusercontent.com/JALAL591/compose-bridge/main/docs/screenshots/2_composebridge_patterns_diff.jpg" width="100%" alt="فروقات التعديل الجراحي" /></a> | <a href="https://github.com/TechsOneAi/ComposeLintAI/blob/main/docs/screenshots/3_composebridge_live_device_sync.jpg"><img src="https://raw.githubusercontent.com/JALAL591/compose-bridge/main/docs/screenshots/3_composebridge_live_device_sync.jpg" width="100%" alt="المزامنة الحية على الهاتف" /></a> |
 
 ---
 
@@ -88,14 +87,14 @@
 
 ## ⚙️ كيف تعمل الأداة خلف الكواليس (Under the Hood)
 
-تعمل ComposeBridge كمنظومة ثلاثية الأطراف تنسق بين إضافة الـ IDE، ومحرك التعديل الجراحي، والمراقب الحي على الهاتف:
+تعمل ComposeLintAI كمنظومة ثلاثية الأطراف تنسق بين إضافة الـ IDE، ومحرك التعديل الجراحي، والمراقب الحي على الهاتف:
 
 - **إضافة بيئة التطوير (Android Studio / IntelliJ Plugin):**
   تدير عمليات خادم البايثون في الخلفية، وتعرض حالة الاتصال والنبضات اللحظية، وتنشئ رموز QR لشبكة Tailscale WireGuard الآمنة للاتصال عن بُعد، وتوفر تبويبات الفحص (`Changes`, `Tokens`, `Orphans`, `Patterns`, `Status`) مع واجهة لمراجعة الفروقات واعتمادها أو رفضها.
 - **سيرفر بايثون ومحرك الـ AST الجراحي (Tree-sitter):**
   خادم WebSocket سريع يعمل على المنفذ `8711`. عند استقبال أي تعديل، يقوم Tree-sitter بتحليل شجرة قواعد كود Kotlin وتعديل السطر المطلوب جراحياً دون إعادة تنسيق الكود أو المساس بالتعليقات، مع نظام قفل ذري للملفات (`_atomic_write_text`) وحفظ دقيق لنهايات الأسطر (CRLF/LF).
 - **عميل أندرويد (:composebridge-agent):**
-  يعمل كطبقة خفيفة فوق واجهة التطبيق عبر `ComposeBridgeAgent.Root`. يلتقط لمسات المستخدم في وضع التصميم، ويحسب أبعاد وإحداثيات العناصر عبر `CompositionRegistry`، ويطبق التعديلات محلياً وفورياً (<50ms) عبر سجلات `BridgeThemeRegistry` و `BridgeDimensionRegistry` و `BridgeTextRegistry`.
+  يعمل كطبقة خفيفة فوق واجهة التطبيق عبر `ComposeLintAIAgent.Root`. يلتقط لمسات المستخدم في وضع التصميم، ويحسب أبعاد وإحداثيات العناصر عبر `CompositionRegistry`، ويطبق التعديلات محلياً وفورياً (<50ms) عبر سجلات `BridgeThemeRegistry` و `BridgeDimensionRegistry` و `BridgeTextRegistry`.
 - **محرك اليومية والتراجع الآمن (PatternJournal):**
   قبل تعديل أي ملف، يتم فحص صحة قواعده بـ Tree-sitter وأخذ نسخة احتياطية سالمة `.bridge.bak`. عند التراجع (Reject)، تعتمد الأداة على Git أولاً (`git checkout -- <file>`) لضمان استرجاع سليم 100%، وتعود للنسخة الاحتياطية في الملفات غير المتتبعة.
 - **بروتوكول سياق النموذج (MCP Server):**
@@ -115,11 +114,11 @@ composebridge/
 
 ---
 
-## 🔄 دليل الترقية من v1.1.x إلى v1.1.8
+## 🔄 دليل الترقية من v1.1.x إلى v1.1.9
 
-الترقية إلى الإصدار v1.1.8 سهلة ومباشرة ولا تتضمن **أي تغييرات كاسرة (Zero Breaking Changes)** في كود مشروعك أو إعدادات Gradle:
+الترقية إلى الإصدار v1.1.9 سهلة ومباشرة ولا تتضمن **أي تغييرات كاسرة (Zero Breaking Changes)** في كود مشروعك أو إعدادات Gradle:
 
-1. **تحديث إضافة بيئة التطوير (IDE Plugin):** قم بتثبيت حزمة الإضافة المحدثة `dist/ComposeBridgeIntelliJ-1.1.8.zip` في Android Studio عبر (**Settings** ➔ **Plugins** ➔ **Install Plugin from Disk...**) وأعد تشغيل البرنامج.
+1. **تحديث إضافة بيئة التطوير (IDE Plugin):** قم بتثبيت حزمة الإضافة المحدثة `dist/ComposeLintAI-1.1.9.zip` في Android Studio عبر (**Settings** ➔ **Plugins** ➔ **Install Plugin from Disk...**) وأعد تشغيل البرنامج.
 2. **تحديث مكتبة الـ Android AAR:** استبدل ملف `composebridge-agent-release.aar` في مجلد `libs/` داخل تطبيقك بالنسخة المحدثة من `dist/composebridge-agent-release.aar`، ثم أعد مزامنة Gradle (`Sync Project`).
 3. **تحديث سيرفر البايثون:** إذا كنت تشغله يدوياً، حدّث الحزم عبر `pip install -r requirements.txt --upgrade` في مجلد `server/`.
 4. **التغييرات الكاسرة:** **لا توجد أي تغييرات كاسرة.** جميع بروتوكولات الاتصال وسجلات الـ Runtime وأدوات الـ MCP متوافقة 100% مع الإصدارات السابقة.
@@ -128,17 +127,17 @@ composebridge/
 
 ## 🛠️ التشغيل السريع (Android / KMP)
 
-يمكنك تشغيل ComposeBridge والاتصال به بطريقتين حسب بيئة عملك:
+يمكنك تشغيل ComposeLintAI والاتصال به بطريقتين حسب بيئة عملك:
 
 ### 🔹 الخيار الأول: استخدام إضافة Android Studio Plugin (موصى به للمطورين)
 
 لا حاجة لفتح الـ Terminal أو تشغيل أوامر يدوياً؛ تتكفل إضافة بيئة التطوير بإدارة الخادم وتوجيه المنافذ تلقائياً بنقرة زر واحدة.
 
-1. **افتح نافذة الأدوات (ToolWindow)**: في Android Studio، افتح نافذة **ComposeBridge** من الشريط الجانبي الأيمن.
+1. **افتح نافذة الأدوات (ToolWindow)**: في Android Studio، افتح نافذة **ComposeLintAI** من الشريط الجانبي الأيمن.
 2. **شغّل السيرفر**: اضغط على زر **▶ Start Bridge**.
    - تقوم الإضافة بتشغيل `server.py` في الخلفية وتطبيق أمر `adb reverse tcp:8711 tcp:8711` تلقائياً.
    - تتغير الحالة مباشرة إلى `🟢 Bridge Running`.
-   - *(اختياري)* يمكنك تفعيل **Auto-start Bridge Server** من **Settings → ComposeBridge** لتشغيل السيرفر تلقائياً بمجرد فتح المشروع.
+   - *(اختياري)* يمكنك تفعيل **Auto-start Bridge Server** من **Settings → ComposeLintAI** لتشغيل السيرفر تلقائياً بمجرد فتح المشروع.
 3. **أضف الـ Agent** إلى مشروعك وقم بتهيئته (انظر الخطوات بالأسفل).
 
 ---
@@ -195,12 +194,12 @@ composebridge/
 3. **اترك هذه النافذة مفتوحة** (يجب أن يظل نفق Tailscale Funnel قيد التشغيل).
 
 ##### الخطوة 3: الحصول على الرابط في إضافة Android Studio / IntelliJ
-1. افتح نافذة أداة **ComposeBridge** في الشريط الجانبي.
+1. افتح نافذة أداة **ComposeLintAI** في الشريط الجانبي.
 2. اضغط على زر **"Share Remote"**.
 3. ستظهر لك نافذة منبثقة تحتوي على **QR Code** ورابط الاتصال المشفر المباشر (`wss://...`).
 
 ##### الخطوة 4: الاتصال عبر الهاتف الذكي
-1. افتح تطبيقك (المدمج به ComposeBridge Agent).
+1. افتح تطبيقك (المدمج به ComposeLintAI Agent).
 2. اضغط على أيقونة وضع التصميم العائمة 🎨 ثم افتح **إعدادات الاتصال (Connection Settings)**.
 3. اختر تبويب **"Remote"**:
    - اضغط على **"Scan QR"** وامسح الرمز مباشرة من شاشة الكمبيوتر، **أو**
@@ -228,7 +227,7 @@ dependencies {
 ```
 
 ##### ⚠️ مشاريع Kotlin Multiplatform (KMP)
-إذا كان مشروعك يستهدف كلاً من Android و Desktop (KMP) وكنت تستخدم سجلات ComposeBridge داخل `commonMain`، **لا تستخدم ملفات الـ `.aar`** (حيث إن مترجم الكمبيوتر Desktop لا يستطيع قراءة حزم `.aar` الخاصة بنظام Android). بدلاً من ذلك، استخدم الموديولات المصدرية كالتالي:
+إذا كان مشروعك يستهدف كلاً من Android و Desktop (KMP) وكنت تستخدم سجلات ComposeLintAI داخل `commonMain`، **لا تستخدم ملفات الـ `.aar`** (حيث إن مترجم الكمبيوتر Desktop لا يستطيع قراءة حزم `.aar` الخاصة بنظام Android). بدلاً من ذلك، استخدم الموديولات المصدرية كالتالي:
 
 1. انسخ مجلد `agent/runtime` إلى مشروعك (مثال: `composebridge-agent/runtime`).
 2. في ملف `settings.gradle.kts` (أو `settings.gradle`)، أضف موديول الـ runtime:
@@ -261,9 +260,9 @@ dependencies {
 ```kotlin
 override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    ComposeBridgeAgent.start(context = this, serverUrl = "ws://127.0.0.1:8711")
+    ComposeLintAIAgent.start(context = this, serverUrl = "ws://127.0.0.1:8711")
     setContent {
-        ComposeBridgeAgent.Root {
+        ComposeLintAIAgent.Root {
             App()
         }
     }
@@ -282,10 +281,10 @@ override fun onCreate(savedInstanceState: Bundle?) {
 
 ## 🤖 AI Agent Integration (MCP) - تكامل وكلاء الذكاء الاصطناعي
 
-يعرض ComposeBridge أدواته الـ 34 لوكلاء الذكاء الاصطناعي عبر بروتوكول Model Context Protocol (MCP). **لا يُشترط وجود هاتف لاستخدام MCP.**
+يعرض ComposeLintAI أدواته الـ 34 لوكلاء الذكاء الاصطناعي عبر بروتوكول Model Context Protocol (MCP). **لا يُشترط وجود هاتف لاستخدام MCP.**
 
 > 💡 **كفاءة استهلاك السياق (Context Window):**
-> "ComposeBridge uses Lazy Loading, so 34 MCP tools consume only ~176 tokens (<1% of context window)."
+> "ComposeLintAI uses Lazy Loading, so 34 MCP tools consume only ~176 tokens (<1% of context window)."
 
 ### العملاء المدعومون
 - ✅ **Google Antigravity IDE**
@@ -376,13 +375,13 @@ pip install -r requirements.txt
 ---
 
 ## 📜 الترخيص
-موزّع تحت رخصة [Apache License 2.0](https://github.com/JALAL591/compose-bridge/blob/main/LICENSE).
+موزّع تحت رخصة [Apache License 2.0](https://github.com/TechsOneAi/ComposeLintAI/blob/main/LICENSE).
 
 ---
 
 ## 🌍 الاتصال والتحكم عن بُعد عبر Tailscale (Remote Access)
 
-يقدم ComposeBridge v1.1.6 ميزة الاتصال عن بُعد الآمن باستخدام تقنية **Tailscale Funnel** المبنية على بروتوكول WireGuard والتشفير الكامل. يمكنك الآن معاينة وتعديل واجهات Compose مباشرة على الهواتف الحقيقية عبر شبكات الإنترنت الخارجية وبيانات الهاتف دون الحاجة لكابل USB.
+يقدم ComposeLintAI v1.1.6 ميزة الاتصال عن بُعد الآمن باستخدام تقنية **Tailscale Funnel** المبنية على بروتوكول WireGuard والتشفير الكامل. يمكنك الآن معاينة وتعديل واجهات Compose مباشرة على الهواتف الحقيقية عبر شبكات الإنترنت الخارجية وبيانات الهاتف دون الحاجة لكابل USB.
 
 ### 1. المتطلبات الأساسية
 - قم بتثبيت **Tailscale** على حاسوب التطوير: [https://tailscale.com/download](https://tailscale.com/download)
@@ -390,15 +389,15 @@ pip install -r requirements.txt
 - تأكد من تفعيل خاصية [Tailscale Funnel](https://tailscale.com/kb/1223/funnel) لحسابك.
 
 ### 2. تفعيل المشاركة من بيئة التطوير (Android Studio Plugin)
-1. افتح نافذة **ComposeBridge** في أندرويد ستوديو.
+1. افتح نافذة **ComposeLintAI** في أندرويد ستوديو.
 2. انقر على **▶ Start Bridge** لتشغيل السيرفر المحلي مع التوكن الديناميكي العشوائي.
 3. انقر على زر **🌍 Share Remote** في شريط الأدوات:
    - ستقوم الإضافة بتشغيل نفق `tailscale funnel 8711 --bg` تلقائياً.
    - ستظهر نافذة منبثقة تحتوي على رمز **QR Code** يضم رابط الاتصال الآمن `wss://<node>.<tailnet>.ts.net` وتوكن المصادقة الديناميكي.
 4. يمكنك نسخ الرابط أو التوكن بنقرة زر، أو إيقاف المشاركة بالنقر على **Stop Sharing**.
 
-### 3. الاتصال من تطبيق الهاتف (ComposeBridge Agent)
-1. افتح تطبيقك (في وضع Debug) المزود بـ `ComposeBridgeAgent`.
+### 3. الاتصال من تطبيق الهاتف (ComposeLintAI Agent)
+1. افتح تطبيقك (في وضع Debug) المزود بـ `ComposeLintAIAgent`.
 2. انقر على الزر العائم **🎨** لإظهار شريط الأدوات، ثم انقر على أيقونة **🌍**.
 3. انقر على **📷 مسح QR أو لصق من الحافظة** (أو الصق JSON مباشرة).
 4. سيتصل الوكيل فوراً بالسيرفر عبر بروتوكول مشفر `wss://` ويبدأ المزامنة الحية للتصميم.

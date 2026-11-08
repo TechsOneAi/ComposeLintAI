@@ -130,3 +130,30 @@ def send_refresh_signal() -> bool:
         print(f"[MCP] send_refresh_signal failed: {e}", file=sys.stderr)
         return False
 
+
+async def notify_agent_warning(title: str, message: str) -> bool:
+    """Notify Bridge Server to broadcast an agent advisory/warning balloon to IDE Plugin."""
+    try:
+        async with websockets.connect("ws://127.0.0.1:8711", open_timeout=2) as ws:
+            token = get_or_create_auth_token(PROJECT_ROOT)
+            await ws.send(json.dumps({"type": "auth", "token": token}))
+            await asyncio.wait_for(ws.recv(), timeout=2)
+
+            await ws.send(json.dumps({
+                "type": "agent_warning",
+                "title": title,
+                "message": message,
+            }))
+            await asyncio.wait_for(ws.recv(), timeout=2)
+            return True
+    except Exception as e:
+        print(f"[MCP] Agent warning notify failed: {e}", file=sys.stderr)
+        return False
+
+
+def send_agent_warning(title: str, message: str) -> bool:
+    try:
+        return run_async(notify_agent_warning(title, message))
+    except Exception:
+        return False
+

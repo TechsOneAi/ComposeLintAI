@@ -9,14 +9,7 @@ import json
 from pathlib import Path
 from typing import Tuple, Optional
 
-try:
-    from core.project_root import get_project_root
-except ImportError:
-    try:
-        from server.core.project_root import get_project_root
-    except ImportError:
-        def get_project_root():
-            return Path.cwd()
+from core.project_root import get_project_root
 
 
 def should_allow_clean_cache(project_root: Optional[Path] = None) -> Tuple[bool, str]:

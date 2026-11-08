@@ -4,3 +4,5 @@ tree-sitter-kotlin>=1.0.0
 # MCP (Model Context Protocol) for AI agents
 mcp>=2.2.0
 filelock
+pytest>=8.0.0
+pytest-asyncio

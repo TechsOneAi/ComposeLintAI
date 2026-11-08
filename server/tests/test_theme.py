@@ -1,3 +1,4 @@
+import pytest
 from pathlib import Path
 import sys
 _SERVER_DIR = Path(__file__).resolve().parent.parent
@@ -9,6 +10,7 @@ import json
 import websockets
 
 
+@pytest.mark.skip(reason="Requires running live bridge server on ws://127.0.0.1:8711")
 async def test():
     async with websockets.connect("ws://127.0.0.1:8711") as ws:
         # 1) اسأل عن التوكنات

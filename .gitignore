@@ -25,14 +25,22 @@ captures/
 # Scratch & Local Experiments
 scratch/
 
-# Dist Release Artifacts (Keep official release assets for v1.1.8)
-dist/*.aar
+# === Secret Sauce: Plugin Source (Local Only) ===
+plugin/
+
+# === Architecture Backups ===
+**/*.bak_arch
+*.bak_arch
+
+# === Old Release Packages (Keep only current in dist/) ===
 dist/*.zip
-!dist/composebridge-runtime-release.aar
-!dist/composebridge-agent-release.aar
-!dist/ComposeBridgeIntelliJ-1.1.8.zip
-!dist/composebridge-server-1.1.8.zip
-!dist/ComposeBridge-v1.1.8-AllInOne.zip
+dist/*.tar.gz
+build/distributions/*.zip
+build/distributions/*.tar.gz
+
+# Allow specific distribution files
+!dist/*.aar
+!dist/ComposeLintAI-1.1.9.zip
 
 # Python
 __pycache__/

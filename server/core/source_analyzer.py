@@ -58,7 +58,6 @@ from analysis.text_ref_analyzer import (
 
 from analysis.ast_scope_resolver import (
     RISKY_FILE_PATTERNS,
-    _USAGE_GLOBAL_CACHE,
     _find_enclosing_function_or_class,
     _extract_composable_scope,
     _line_context_with_start,

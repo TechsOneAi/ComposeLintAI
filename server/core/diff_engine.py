@@ -383,6 +383,11 @@ def approve_change(file_path_str: str, change_id: str, project_root: Path) -> Di
             journal = PatternJournal(project_root)
             journal._clean_pending_edits(rel_file)
             journal._clean_journal_for_file(rel_file)
+            if target_name_lower not in {"designsystem.kt", "appcolors.kt", "appdimens.kt", "appstrings.kt"}:
+                for bak in project_root.rglob("*.bridge.bak"):
+                    if not is_ignored_path(bak, project_root) and any(r in bak.name.lower() for r in ["designsystem", "appcolors", "appdimens", "appstrings"]):
+                        orig_reg = str(bak)[:-len(".bridge.bak")]
+                        journal.approve_file_changes(orig_reg)
         except Exception:
             pass
 

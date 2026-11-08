@@ -11,21 +11,8 @@ import json
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Any
 
-try:
-    from common.file_ops import is_ignored_path
-except ImportError:
-    try:
-        from server.common.file_ops import is_ignored_path
-    except ImportError:
-        def is_ignored_path(p, root=None): return any(k in str(p).lower() for k in ["build", "backup", ".composebridge", ".bak", ".git"])
-
-try:
-    from core.project_root import get_project_root
-except ImportError:
-    try:
-        from server.core.project_root import get_project_root
-    except ImportError:
-        def get_project_root(): return Path.cwd()
+from common.file_ops import is_ignored_path, _rank
+from core.project_root import get_project_root
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -200,12 +187,6 @@ def resolve_target_design_file(
         "string": ["AppStrings.kt", "Strings.kt", "StringResources.kt", "DesignSystem.kt"],
     }
     candidates = candidates_map.get(token_type_norm, ["DesignSystem.kt", "Theme.kt"])
-
-    def _rank(p: Path) -> int:
-        norm = str(p).replace("\\", "/").lower()
-        if "/commonmain/" in norm: return 0
-        if "/main/" in norm: return 1
-        return 2 if "/src/" in norm else 3
 
     for name in candidates:
         matches = [f for f in root.rglob(name) if not is_ignored_path(f, root)]

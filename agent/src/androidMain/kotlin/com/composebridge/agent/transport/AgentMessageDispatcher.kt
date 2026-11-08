@@ -543,13 +543,15 @@ class AgentMessageDispatcher(
                                 BridgeState.lastGlobalEditInfo = "🎨 Converted — Rebuild required to see changes"
                             }
 
-                            val allIds = resultsArray
+                            // ⭐ حذف التعديلات الناجحة فقط والإبقاء على الفاشلة لتنبيه المستخدم
+                            val successfulIds = resultsArray
+                                ?.filter { it.jsonObject["success"]?.jsonPrimitive?.booleanOrNull == true }
                                 ?.mapNotNull { it.jsonObject["id"]?.jsonPrimitive?.contentOrNull }
                                 ?.toSet() ?: emptySet()
 
-                            if (allIds.isNotEmpty()) {
-                                BridgeState.onBatchAck(allIds)
-                            } else {
+                            if (successfulIds.isNotEmpty()) {
+                                BridgeState.onBatchAck(successfulIds)
+                            } else if (failCount == 0 && successCount == total) {
                                 BridgeState.clearPendingEdits(revert = false)
                             }
 

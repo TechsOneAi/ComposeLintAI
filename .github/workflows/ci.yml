@@ -38,7 +38,7 @@ jobs:
         env:
           PYTHONPATH: server
         run: |
-          python -m unittest discover -s server/tests -p "test_*.py"
+          python -m pytest server/tests
 
   # =========================================================================
   # 2. Kotlin Plugin Build

@@ -1,3 +1,4 @@
+from functools import wraps
 # -*- coding: utf-8 -*-
 """
 Journal, atomic write locking, and splice history helpers for state editor.
@@ -32,11 +33,10 @@ MAX_JOURNAL = 50
 
 def with_write_lock(func):
     """Decorator to run function inside shared write lock."""
+    @wraps(func)
     def wrapper(*args, **kwargs):
         with acquire_write_lock():
             return func(*args, **kwargs)
-    wrapper.__name__ = func.__name__
-    wrapper.__doc__ = func.__doc__
     return wrapper
 
 
@@ -44,14 +44,31 @@ SPLICE_JOURNAL = []
 
 
 def _journal_save(file_path, original_content, new_content, pattern_id="cli_edit"):
+    import difflib
+    old_lines = original_content.splitlines()
+    new_lines = new_content.splitlines()
+    matcher = difflib.SequenceMatcher(None, old_lines, new_lines)
+    changed_hunks = []
+    for tag, alo, ahi, blo, bhi in matcher.get_opcodes():
+        if tag == "equal":
+            continue
+        old_slice = old_lines[alo:ahi]
+        new_slice = new_lines[blo:bhi]
+        line_num = blo + 1 if blo < len(new_lines) else max(1, len(new_lines))
+        changed_hunks.append({
+            "line": line_num,
+            "old_line": "\n".join(old_slice),
+            "new_line": "\n".join(new_slice),
+        })
+
     entry = {
         "file": str(file_path),
-        "original": original_content,
-        "new": new_content,
+        "diff_hunks": changed_hunks,
+        "hunks_count": len(changed_hunks),
         "timestamp": time.time(),
     }
 
-    # In-memory
+    # In-memory (stores diff hunks only to prevent memory bloat)
     SPLICE_JOURNAL.append(entry)
     if len(SPLICE_JOURNAL) > MAX_JOURNAL:
         SPLICE_JOURNAL.pop(0)
@@ -181,7 +198,11 @@ def _validate_after_splice(file_path):
     if not validate_file_parses(file_path):
         if SPLICE_JOURNAL:
             last = SPLICE_JOURNAL[-1]
-            Path(last["file"]).write_text(last["original"], encoding="utf-8")
+            bak = Path(str(last["file"]) + ".bridge.bak")
+            if bak.exists():
+                Path(last["file"]).write_text(bak.read_text(encoding="utf-8"), encoding="utf-8")
+            elif "original" in last:
+                Path(last["file"]).write_text(last["original"], encoding="utf-8")
         return False
     return True
 
@@ -208,7 +229,11 @@ def rollback_last():
 
     # تراجع
     last = SPLICE_JOURNAL.pop()
-    Path(last["file"]).write_text(last["original"], encoding="utf-8")
+    bak = Path(str(last["file"]) + ".bridge.bak")
+    if bak.exists():
+        Path(last["file"]).write_text(bak.read_text(encoding="utf-8"), encoding="utf-8")
+    elif "original" in last:
+        Path(last["file"]).write_text(last["original"], encoding="utf-8")
 
     # احذف آخر سطر من الملف
     try:

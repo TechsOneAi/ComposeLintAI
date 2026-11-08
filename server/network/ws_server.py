@@ -239,8 +239,7 @@ def check_origin(path, request_headers):
     if origin:
         allowed_prefixes = (
             "http://localhost", "https://localhost",
-            "http://127.0.0.1", "https://127.0.0.1",
-            "null"
+            "http://127.0.0.1", "https://127.0.0.1"
         )
         clean = origin.rstrip("/")
         if not any(clean == p or clean.startswith(p + ":") for p in allowed_prefixes):
@@ -259,8 +258,7 @@ async def handle_client(websocket: WebSocketServerProtocol) -> None:
         if origin:
             allowed_prefixes = (
                 "http://localhost", "https://localhost",
-                "http://127.0.0.1", "https://127.0.0.1",
-                "null"
+                "http://127.0.0.1", "https://127.0.0.1"
             )
             clean = origin.rstrip("/")
             if not any(clean == p or clean.startswith(p + ":") for p in allowed_prefixes):

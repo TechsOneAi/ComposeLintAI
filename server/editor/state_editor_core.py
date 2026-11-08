@@ -1,3 +1,4 @@
+from common.file_ops import assert_inside
 # -*- coding: utf-8 -*-
 """
 Core bridge state editor, MutableState property finder, and typography mutator.
@@ -38,8 +39,11 @@ def get_config_paths() -> dict:
     root = get_project_root()
     for candidate in [
         root / "composebridge.json",
+        root / "composebridge.example.json",
         Path.cwd() / "composebridge.json",
+        Path.cwd() / "composebridge.example.json",
         Path(__file__).resolve().parent.parent.parent / "composebridge.json",
+        Path(__file__).resolve().parent.parent.parent / "composebridge.example.json",
     ]:
         if candidate.exists():
             try:
@@ -207,7 +211,7 @@ def apply_state_update(property_name: str, value: str) -> tuple:
         return result
 
     success, new_value_text, info = result
-    file_path = Path(info["file_path"])
+    file_path = assert_inside(PROJECT_ROOT, Path(info["file_path"]))
     byte_start = info["byte_start"]
     byte_end = info["byte_end"]
     old_value = info["old_value"]
@@ -296,7 +300,7 @@ def update_typography_property(
     import tempfile
     import os
 
-    file_path = APP_TYPOGRAPHY_FILE
+    file_path = assert_inside(PROJECT_ROOT, APP_TYPOGRAPHY_FILE)
     if not file_path.exists():
         return (False, f"AppTypography.kt not found: {file_path}", None)
 
