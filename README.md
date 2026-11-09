@@ -46,11 +46,12 @@
 
 Watch ComposeLintAI visually edit a running Jetpack Compose UI live:
 
-<p align="center">
-  <a href="https://www.youtube.com/watch?v=Hywyq7cBdDM">
-    <img src="https://img.youtube.com/vi/Hywyq7cBdDM/hqdefault.jpg" alt="Watch ComposeLintAI Demo" width="75%" style="border-radius: 8px;" />
-  </a>
-</p>
+## 📸 Visual Demos
+
+| ⚡ Zero-Gradle AST Governance Demo | 📱 On-Device Live UI Tuning |
+| :---: | :---: |
+| [![Zero-Gradle AST Governance](https://img.youtube.com/vi/t7N5yfCB_RU/hqdefault.jpg)](https://www.youtube.com/watch?v=t7N5yfCB_RU) | [![Live On-Device Demo](https://img.youtube.com/vi/Hywyq7cBdDM/hqdefault.jpg)](https://www.youtube.com/watch?v=Hywyq7cBdDM) |
+
 
 ### Screenshots
 
