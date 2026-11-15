@@ -26,6 +26,10 @@
   <a href="https://jetc.dev/issues/336.html" title="jetc.dev Newsletter Issue #336">
     <img src="https://img.shields.io/badge/As_Seen_In-jetc.dev_%23336-blue?logo=Jetpack+Compose&logoColor=white" alt="As Seen In - jetc.dev Newsletter Issue #336" height="24">
   </a>
+  &nbsp;
+  <a href="https://kotlinweekly.net" title="Kotlin Weekly Issue #537">
+    <img src="https://img.shields.io/badge/Featured_in-kotlinweekly.net_Issue_%23537-7F52FF?style=flat&logo=kotlin&logoColor=white" alt="Featured in Kotlin Weekly Issue #537" height="24">
+  </a>
 </p>
 
 [English](README.md) | [العربية](README_AR.md)
