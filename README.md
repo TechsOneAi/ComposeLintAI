@@ -16,6 +16,9 @@
 [![compose-bridge on DevHunt](https://devhunt.org/badge/compose-bridge.svg)](https://devhunt.org/tool/compose-bridge)
 [![Listed on MCP Market](https://mcpmarket.com/badge/server/composebridge.svg?style=compact)](https://mcpmarket.com/server/composebridge?utm_source=readme&utm_medium=badge)
 
+<a href="https://www.producthunt.com/products/composebridge?launch=composelintai" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/follow.svg?product_id=1328294&theme=dark" alt="ComposeLintAI - Pre-write AST linter & MCP server for Jetpack Compose | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+
+
 ## 📰 Featured In
 
 <p align="left">
