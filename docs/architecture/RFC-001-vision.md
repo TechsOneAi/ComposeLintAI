@@ -3,8 +3,10 @@
 > **Status:** Accepted  
 > **Author:** Jalal (@JALAL591)  
 > **Date:** 2026-10-21  
-> **Target Release:** v1.1.6 (current), v2.0.0 (vision)  
-> **License:** MIT
+> **Target Release:** v1.1.6 (Community), v1.3.0 (Pro)  
+> **License:** Apache 2.0 (Community) / Commercial via [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/36095-composelintai-pro) ([Pro Terms](../../PRO_TERMS.md))
+
+> **Edition Note:** **ComposeLintAI Pro** (`https://plugins.jetbrains.com/plugin/36095-composelintai-pro`) delivers the 100% native Kotlin/JVM architecture with the 5 Golden Gates, Shadow PSI Validator, and AER-1 Provenance Receipts. See the full [Community vs. Pro Comparison](../../README.md#-community-vs-pro-edition-comparison).
 
 ---
 

@@ -2,8 +2,10 @@
 
 Complete reference for all MCP (Model Context Protocol) tools provided by the ComposeBridge server. These tools allow AI agents (such as Claude, Codex, Gemini, Antigravity) to safely inspect, refactor, and tune Jetpack Compose UI code with AST awareness.
 
-> **KMP / Desktop Status Note:**
-> KMP/Desktop support is currently in **Beta**. Focus for v1.1.1 is on **Android stability**.
+> **Editions Note:**
+> - **ComposeLintAI Community:** Open-source Python MCP server ([Privacy Policy](../PRIVACY.md)).
+> - **ComposeLintAI Pro:** 100% native Kotlin/JVM MCP server & 5 Golden Gates available on [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/36095-composelintai-pro) ([Pro Terms](../PRO_TERMS.md)).
+> - **KMP / Desktop Status Note:** KMP/Desktop support is currently in **Beta**.
 
 ---
 

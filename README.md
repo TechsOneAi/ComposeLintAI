@@ -16,9 +16,6 @@
 [![compose-bridge on DevHunt](https://devhunt.org/badge/compose-bridge.svg)](https://devhunt.org/tool/compose-bridge)
 [![Listed on MCP Market](https://mcpmarket.com/badge/server/composebridge.svg?style=compact)](https://mcpmarket.com/server/composebridge?utm_source=readme&utm_medium=badge)
 
-<a href="https://www.producthunt.com/products/composebridge?launch=composelintai" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/follow.svg?product_id=1328294&theme=neutral" alt="ComposeLintAI - Pre-write AST linter & MCP server for Jetpack Compose | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
-
-
 ## 📰 Featured In
 
 <p align="left">
@@ -29,13 +26,47 @@
   <a href="https://jetc.dev/issues/336.html" title="jetc.dev Newsletter Issue #336">
     <img src="https://img.shields.io/badge/As_Seen_In-jetc.dev_%23336-blue?logo=Jetpack+Compose&logoColor=white" alt="As Seen In - jetc.dev Newsletter Issue #336" height="24">
   </a>
-  &nbsp;
-  <a href="https://kotlinweekly.net" title="Kotlin Weekly Issue #537">
-    <img src="https://img.shields.io/badge/Featured_in-kotlinweekly.net_Issue_%23537-7F52FF?style=flat&logo=kotlin&logoColor=white" alt="Featured in Kotlin Weekly Issue #537" height="24">
-  </a>
 </p>
 
-[English](README.md) | [العربية](README_AR.md)
+[English](README.md) | [العربية](README_AR.md) | [Community Privacy](PRIVACY.md) | [Pro Terms](PRO_TERMS.md)
+
+---
+
+## ⚖️ Community vs. Pro Edition Comparison
+
+| Feature / Capability | **ComposeLintAI Community** (Free / Open-Source) | **ComposeLintAI Pro** (Commercial) |
+|---|---|---|
+| **Runtime & Architecture** | Python-based MCP/WebSocket server + IDE Plugin | **100% Native Kotlin / JVM** inside JetBrains IDE (zero Python / external runtime) |
+| **AST & Code Analysis** | Regex / Python-assisted scanning + IDE bridge | **Native Kotlin PSI AST Engine** (`PsiColorEditor`, `PsiDimensionEditor`, `PsiTextEditor`) |
+| **AI Agent Governance** | Basic diff review & rollback | **5 Golden Hard Gates**, **Shadow PSI Validator** (pre-write AST & type guard), **Circuit Breaker** (auto-trip after 3 failures) |
+| **Technical Debt & Receipts** | Basic pattern journal | **Agent Debt Scanner** (structural AST hashing) & **AER-1 Cryptographic Provenance Receipts** (`.composebridge-state/receipts/`) |
+| **CI / Linter Enforcement** | Manual IDE checks | **Unified `.composelintai.json` Linter** across IDE and `--check` CLI (`warn` & `block` modes) |
+| **MCP Tools & Integration** | 34+ Python MCP tools | **39 Native JVM MCP Tools** + one-click **MCP Setup** for Antigravity, Cursor, Claude Desktop, and Gemini |
+| **Licensing & Support** | Apache 2.0 Open Source | Commercial via [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/36095-composelintai-pro) ([Pro Terms](PRO_TERMS.md)) |
+
+### 🚀 ComposeLintAI Pro — Official Marketplace & Product Hunt Launch Offers
+
+Install **ComposeLintAI Pro** directly from the official JetBrains Marketplace:  
+👉 **[Install ComposeLintAI Pro (`36095-composelintai-pro`)](https://plugins.jetbrains.com/plugin/36095-composelintai-pro)**
+
+**🎉 Product Hunt Launch Offers** *(automatically applied at checkout — no promo code required)*:
+- **First 100 individual developers:** **100% FREE** for 1 full year (annual subscription).
+- **Next 900 individual developers:** **50% OFF** for 1 full year.
+- **First 30 companies & teams:** **50% OFF** for 1 full year.
+
+---
+
+### 🛡️ The 5 Golden Gates (v1.3.0 Governance Facade)
+
+ComposeLintAI Pro v1.3.0 introduces the **5 Golden Hard Gates Facade**, unifying 39 internal MCP tools into 5 structured governance gates for AI agents while preserving 100% backward compatibility:
+
+| Golden Gate | Primary Purpose | Internal MCP Tools Mapped |
+|---|---|---|
+| **Gate 1: `check_compilation`** | Verifies Kotlin AST compilation & triggers Auto-Reject on critical errors | `get_ide_diagnostics`, `scan_project_diagnostics`, `run_gradle_build` |
+| **Gate 2: `check_suppressions`** | Prevents unauthorized increases in `@Suppress` / `@SuppressWarnings` | `BridgeGovernanceRules.checkSuppressionsGuard` |
+| **Gate 3: `check_scope_drift`** | Enforces allowed file bounds for active tasks (`.composebridge-state/task_scope.json`) | `ScopeTracker.checkScopeDrift`, `set_task_scope` |
+| **Gate 4: `verify_governance`** | Manages atomic approvals, rejects, diffs, and SHA-256 baseline verification | `approve_file_changes`, `reject_file_changes`, `get_file_diff`, `rollback_last`, `list_modified_files` |
+| **Gate 5: `verify_token_integrity`** | Enforces design system token integrity: no hardcoded values or orphan drift | `set_token`, `update_color`, `update_dimension`, `add_token`, `replace_pattern`, `scan_project`, `list_tokens` |
 
 ---
 
@@ -53,12 +84,11 @@
 
 Watch ComposeLintAI visually edit a running Jetpack Compose UI live:
 
-## 📸 Visual Demos
-
-| ⚡ Zero-Gradle AST Governance Demo | 📱 On-Device Live UI Tuning |
-| :---: | :---: |
-| [![Zero-Gradle AST Governance](https://img.youtube.com/vi/t7N5yfCB_RU/hqdefault.jpg)](https://www.youtube.com/watch?v=t7N5yfCB_RU) | [![Live On-Device Demo](https://img.youtube.com/vi/Hywyq7cBdDM/hqdefault.jpg)](https://www.youtube.com/watch?v=Hywyq7cBdDM) |
-
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=Hywyq7cBdDM">
+    <img src="https://img.youtube.com/vi/Hywyq7cBdDM/hqdefault.jpg" alt="Watch ComposeLintAI Demo" width="75%" style="border-radius: 8px;" />
+  </a>
+</p>
 
 ### Screenshots
 
@@ -301,24 +331,23 @@ pip install -r requirements.txt
 ```
 
 #### Step 2: Configure `mcp_config.json`
-Add the ComposeLintAI server configuration to your AI agent's config file (e.g. in `~/.gemini/config/mcp_config.json` or your IDE configuration):
+Add the ComposeLintAI Pro server configuration to your AI agent's config file (e.g. in `~/.gemini/config/mcp_config.json` or your IDE configuration):
 
 ```json
 {
   "mcpServers": {
-    "composebridge": {
-      "command": "python",
-      "args": ["-u", "/path/to/compose-bridge/server/mcp_server.py"],
-      "env": {
-        "COMPOSEBRIDGE_ROOT": "/absolute/path/to/your/android/project",
-        "PYTHONIOENCODING": "utf-8"
-      }
+    "composelintai-pro": {
+      "command": "java",
+      "args": [
+        "-jar",
+        "ABSOLUTE_PATH_TO_COMPOSELINTAI_MCP_JAR/composelintai-mcp.jar"
+      ]
     }
   }
 }
 ```
 
-> ⚠️ **Important:** Any changes made to `mcp_config.json` require starting a **New Chat** in your AI agent interface so that all 36 MCP tools are freshly discovered and initialized.
+> ⚠️ **Note:** Replace `ABSOLUTE_PATH_TO_COMPOSELINTAI_MCP_JAR` with the actual path to your `composelintai-mcp.jar` file. Any changes made to `mcp_config.json` require starting a **New Chat** in your AI agent interface so that tools are freshly discovered and initialized.
 
 #### How to set it up in Android Studio / Antigravity:
 1. Open Android Studio / IntelliJ IDEA.

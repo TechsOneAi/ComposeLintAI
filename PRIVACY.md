@@ -31,3 +31,7 @@ ComposeBridge is open source under the Apache-2.0 License. You can inspect all s
 For security disclosures or privacy inquiries, please open an issue on the official GitHub repository:
 https://github.com/TechsOneAi/ComposeLintAI
 
+---
+
+> **ComposeLintAI Pro Users:** This document applies to the open-source **ComposeLintAI Community** edition. For commercial licensing, billing, and terms specific to **ComposeLintAI Pro** (`com.composelintai.pro.plugin`), please review [PRO_TERMS.md](PRO_TERMS.md).
+

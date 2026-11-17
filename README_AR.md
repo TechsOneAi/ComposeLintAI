@@ -28,7 +28,31 @@
   </a>
 </p>
 
-[English](https://github.com/TechsOneAi/ComposeLintAI/blob/main/README.md) | [العربية](https://github.com/TechsOneAi/ComposeLintAI/blob/main/README_AR.md)
+[English](README.md) | [العربية](README_AR.md) | [خصوصية Community](PRIVACY.md) | [شروط Pro](PRO_TERMS.md)
+
+---
+
+## ⚖️ مقارنة بين النسخة المجانية (Community) والنسخة الاحترافية (Pro)
+
+| الميزة / الإمكانية | **ComposeLintAI Community** (مجانية / مفتوحة المصدر) | **ComposeLintAI Pro** (تجارية / احترافية) |
+|---|---|---|
+| **بيئة التشغيل والمعمارية** | خادم Python خارجي (MCP/WebSocket) + إضافة IDE | **Kotlin / JVM خالصة 100%** داخل بيئة JetBrains (بدون Python أو تبعيات خارجية) |
+| **تحليل الكود و AST** | فحص عبر Python + جسر مع الإضافة | **محرك Kotlin PSI AST أصلي** (`PsiColorEditor`, `PsiDimensionEditor`, `PsiTextEditor`) |
+| **حوكمة وكلاء الذكاء الاصطناعي** | مراجعة فروقات أساسية وتراجع | **البوابات الذهبية الخمس (5 Golden Gates)**، **Shadow PSI Validator** (حماية AST والأنواع قبل الكتابة)، و**قاطع الدائرة (Circuit Breaker)** |
+| **الديون التقنية وإيصالات التحقق** | سجل أنماط أساسي (`PatternJournal`) | **Agent Debt Scanner** (بصمة AST هيكلية) و**إيصالات AER-1 المشفرة** (`.composebridge-state/receipts/`) |
+| **فحص CI الموحد** | فحص يدوي داخل الـ IDE | **أداة `.composelintai.json` الموحدة** عبر الـ IDE وسطر الأوامر `--check` مع دعم وضعي `warn` و `block` |
+| **أدوات MCP والتكامل** | 34+ أداة MCP عبر Python | **39 أداة MCP أصلية على JVM** + إعداد بنقرة واحدة (`MCP Setup`) لوكلاء Antigravity و Cursor و Claude Desktop و Gemini |
+| **الترخيص والدعم** | رخصة Apache 2.0 مفتوحة المصدر | ترخيص تجاري عبر [متجر JetBrains الرسمي](https://plugins.jetbrains.com/plugin/36095-composelintai-pro) ([شروط Pro](PRO_TERMS.md)) |
+
+### 🚀 ComposeLintAI Pro — رابط المتجر الرسمي وعروض إطلاق Product Hunt
+
+ثبّت **ComposeLintAI Pro** مباشرة من متجر JetBrains الرسمي:  
+👉 **[تثبيت ComposeLintAI Pro من JetBrains Marketplace](https://plugins.jetbrains.com/plugin/36095-composelintai-pro)**
+
+**🎉 عروض إطلاق Product Hunt** *(تُطبَّق تلقائياً عند الدفع دون الحاجة إلى كود خصم)*:
+- **أول 100 مطور فردي:** **مجاناً بنسبة 100%** لمدة سنة كاملة (للاشتراك السنوي).
+- **الـ 900 مطور فردي التاليون:** **خصم 50%** لمدة سنة كاملة.
+- **أول 30 شركة وفريق عمل:** **خصم 50%** لمدة سنة كاملة.
 
 ---
 
@@ -302,23 +326,22 @@ pip install -r requirements.txt
 ```
 
 #### الخطوة 2: إعداد ملف `mcp_config.json`
-أضف الإعداد التالي في ملف `mcp_config.json` داخل مجلد `.gemini/config/` أو مجلد إعدادات IDE / العميل الخاص بك:
+أضف الإعداد التالي في ملف `mcp_config.json` داخل مجلد `.gemini/config/` أو إعدادات IDE / العميل الخاص بك:
 ```json
 {
   "mcpServers": {
-    "composebridge": {
-      "command": "python",
-      "args": ["-u", "/path/to/compose-bridge/server/mcp_server.py"],
-      "env": {
-        "COMPOSEBRIDGE_ROOT": "/مسار/مشروع/الاندرويد/الخاص/بك",
-        "PYTHONIOENCODING": "utf-8"
-      }
+    "composelintai-pro": {
+      "command": "java",
+      "args": [
+        "-jar",
+        "ABSOLUTE_PATH_TO_COMPOSELINTAI_MCP_JAR/composelintai-mcp.jar"
+      ]
     }
   }
 }
 ```
 
-> ⚠️ **ملاحظة هامة جداً:** أي تعديل على `mcp_config.json` يتطلب بدء محادثة جديدة (**New Chat**) في الوكيل حتى يتم تحميل الأدوات الـ 34 تلقائياً.
+> ⚠️ **ملاحظة:** استبدل `ABSOLUTE_PATH_TO_COMPOSELINTAI_MCP_JAR` بالمسار الفعلي لملف `composelintai-mcp.jar`. أي تعديل على `mcp_config.json` يتطلب بدء محادثة جديدة (**New Chat**) في الوكيل حتى يتم تحميل الأدوات تلقائياً.
 
 #### خطوات الإعداد داخل Android Studio / Antigravity (UI Steps):
 1. افتح Android Studio / IntelliJ IDEA.
