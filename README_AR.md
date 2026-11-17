@@ -28,7 +28,7 @@
   </a>
 </p>
 
-[English](README.md) | [العربية](README_AR.md) | [خصوصية Community](PRIVACY.md) | [شروط Pro](PRO_TERMS.md)
+[English](https://github.com/TechsOneAi/ComposeLintAI/blob/main/README.md) | [العربية](https://github.com/TechsOneAi/ComposeLintAI/blob/main/README_AR.md) | [خصوصية Community](PRIVACY.md) | [شروط Pro](PRO_TERMS.md)
 
 ---
 
@@ -326,22 +326,23 @@ pip install -r requirements.txt
 ```
 
 #### الخطوة 2: إعداد ملف `mcp_config.json`
-أضف الإعداد التالي في ملف `mcp_config.json` داخل مجلد `.gemini/config/` أو إعدادات IDE / العميل الخاص بك:
+أضف الإعداد التالي في ملف `mcp_config.json` داخل مجلد `.gemini/config/` أو مجلد إعدادات IDE / العميل الخاص بك:
 ```json
 {
   "mcpServers": {
-    "composelintai-pro": {
-      "command": "java",
-      "args": [
-        "-jar",
-        "ABSOLUTE_PATH_TO_COMPOSELINTAI_MCP_JAR/composelintai-mcp.jar"
-      ]
+    "composebridge": {
+      "command": "python",
+      "args": ["-u", "/path/to/compose-bridge/server/mcp_server.py"],
+      "env": {
+        "COMPOSEBRIDGE_ROOT": "/مسار/مشروع/الاندرويد/الخاص/بك",
+        "PYTHONIOENCODING": "utf-8"
+      }
     }
   }
 }
 ```
 
-> ⚠️ **ملاحظة:** استبدل `ABSOLUTE_PATH_TO_COMPOSELINTAI_MCP_JAR` بالمسار الفعلي لملف `composelintai-mcp.jar`. أي تعديل على `mcp_config.json` يتطلب بدء محادثة جديدة (**New Chat**) في الوكيل حتى يتم تحميل الأدوات تلقائياً.
+> ⚠️ **ملاحظة هامة جداً:** أي تعديل على `mcp_config.json` يتطلب بدء محادثة جديدة (**New Chat**) في الوكيل حتى يتم تحميل الأدوات الـ 34 تلقائياً.
 
 #### خطوات الإعداد داخل Android Studio / Antigravity (UI Steps):
 1. افتح Android Studio / IntelliJ IDEA.
