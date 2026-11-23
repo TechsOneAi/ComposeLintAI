@@ -21,19 +21,12 @@
 
 ## 📰 Featured In
 
-<p align="left">
-  <a href="https://androidweekly.net/issues/issue-746" title="Android Weekly Issue #746">
-    <img alt="Android Weekly Issue #746" src="https://androidweekly.net/issues/issue-746/badge" height="24">
-  </a>
-  &nbsp;
-  <a href="https://jetc.dev/issues/336.html" title="jetc.dev Newsletter Issue #336">
-    <img src="https://img.shields.io/badge/As_Seen_In-jetc.dev_%23336-blue?logo=Jetpack+Compose&logoColor=white" alt="As Seen In - jetc.dev Newsletter Issue #336" height="24">
-  </a>
-  &nbsp;
-  <a href="https://kotlinweekly.net" title="Kotlin Weekly Issue #537">
-    <img src="https://img.shields.io/badge/Featured_in-kotlinweekly.net_Issue_%23537-7F52FF?style=flat&logo=kotlin&logoColor=white" alt="Featured in Kotlin Weekly Issue #537" height="24">
-  </a>
-</p>
+[![Featured in Android Weekly](https://img.shields.io/badge/Featured%20in-Android%20Weekly%20%23746-3DDC84?style=flat-square&logo=android&logoColor=white)](https://androidweekly.net/issues/issue-746)
+[![Featured in Kotlin Weekly](https://img.shields.io/badge/Featured%20in-Kotlin%20Weekly%20%23537-7F52FF?style=flat-square&logo=kotlin&logoColor=white)](https://mailchi.mp/kotlinweekly/kotlin-weekly-537)
+[![Featured in jetc.dev](https://img.shields.io/badge/Featured%20in-jetc.dev%20%23336-4285F4?style=flat-square&logo=jetpackcompose&logoColor=white)](https://jetc.dev/issues/336.html)
+[![Featured in KMP Weekly](https://img.shields.io/badge/Featured%20in-KMP%20Weekly%20%238-8A2BE2?style=flat-square&logo=kotlin&logoColor=white)](https://kmpweekly.com)
+[![Featured on Droidheim](https://img.shields.io/badge/Featured%20on-Droidheim-00C853?style=flat-square&logo=android&logoColor=white)](https://droidheim.com/articles)
+[![Featured in .monks](https://img.shields.io/badge/Featured%20in-.monks%20Digest-FF6B6B?style=flat-square&logo=rss&logoColor=white)](https://transformation-tech-newsletter.vercel.app/newsletter/2026-11-17)
 
 [English](README.md) | [العربية](README_AR.md) | [Community Privacy](PRIVACY.md) | [Pro Terms](PRO_TERMS.md)
 
