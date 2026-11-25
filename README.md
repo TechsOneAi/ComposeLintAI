@@ -15,6 +15,7 @@
 [![M8ven Score](https://m8ven.ai/badge/mcp/jalal591-compose-bridge-rapm1x)](https://m8ven.ai/mcp/jalal591-compose-bridge-rapm1x?s=readme)
 [![compose-bridge on DevHunt](https://devhunt.org/badge/compose-bridge.svg)](https://devhunt.org/tool/compose-bridge)
 [![Listed on MCP Market](https://mcpmarket.com/badge/server/composebridge.svg?style=compact)](https://mcpmarket.com/server/composebridge?utm_source=readme&utm_medium=badge)
+[![Download Designer APK](https://img.shields.io/badge/Android_App-Download_Designer_v1.0.0_(1.26_MB)-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/TechsOneAi/ComposeLintAI/releases/download/1.2.0/ComposeLintAI-Designer-v1.0.0.apk)
 
 <a href="https://www.producthunt.com/products/composebridge?launch=composelintai" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/follow.svg?product_id=1328294&theme=neutral" alt="ComposeLintAI - Pre-write AST linter & MCP server for Jetpack Compose | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 
@@ -64,6 +65,27 @@ Install **ComposeLintAI Pro** directly from the official JetBrains Marketplace:
 | **Compose Runtime Library (Release & Debug)** | [📦 **composebridge-runtime-release.aar**](https://github.com/TechsOneAi/ComposeLintAI/raw/main/dist/composebridge-runtime-release.aar) | Core registries (~9KB). Required in `implementation` for production-safe APK builds |
 | **Compose Agent Library (Debug Only)** | [📦 **composebridge-agent-release.aar**](https://github.com/TechsOneAi/ComposeLintAI/raw/main/dist/composebridge-agent-release.aar) | Visual overlays, touch inspector, and WebSocket bridge. Put in `debugImplementation` |
 
+---
+
+## 🎨 ComposeLintAI Designer (Android App)
+
+Design Jetpack Compose screens visually on your Android device and export clean, production-ready Kotlin/Compose projects (`.zip`) with SSOT tokens (`AppColors`, `AppDimens`, `AppStrings`) and reusable components.
+
+<p align="left">
+  <a href="https://github.com/TechsOneAi/ComposeLintAI/releases/download/1.2.0/ComposeLintAI-Designer-v1.0.0.apk">
+    <img src="https://img.shields.io/badge/Download_APK-ComposeLintAI_Designer_v1.0.0-16A34A?style=for-the-badge&logo=android&logoColor=white" alt="Download ComposeLintAI Designer APK"/>
+  </a>
+  <a href="https://github.com/TechsOneAi/ComposeLintAI/releases/tag/1.2.0">
+    <img src="https://img.shields.io/badge/Release_Notes-v1.0.0_(1.26_MB)-0F172A?style=for-the-badge&logo=github&logoColor=white" alt="View Release Notes"/>
+  </a>
+</p>
+
+- **Visual Drag & Drop:** Live Dark/Light preview, Blueprints & Atomic components with visual mini-previews.
+- **Clean Export (`.zip`):** On-Demand token injection, Smart Component Reuse, and full RTL/Arabic support.
+- **Lightweight & Hardened:** ~1.26 MB R8-optimized release APK.
+
+> **License Notice:** While the open-source codebase in this repository is licensed under Apache-2.0, the **ComposeLintAI Designer APK** is distributed free of charge as a proprietary binary (closed-source). All rights reserved.
+> 
 ---
 
 ## 📸 Visual Demo
