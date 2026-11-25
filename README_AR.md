@@ -15,6 +15,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/TechsOneAi/ComposeLintAI/blob/main/LICENSE)
 [![JetBrains Marketplace](https://img.shields.io/badge/JetBrains%20Marketplace-ComposeLintAI-blue.svg?logo=jetbrains&logoColor=white)](https://plugins.jetbrains.com/plugin/35226-composebridge)
 [![M8ven Score](https://m8ven.ai/badge/mcp/jalal591-compose-bridge-rapm1x)](https://m8ven.ai/mcp/jalal591-compose-bridge-rapm1x?s=readme)
+[![Download Designer APK](https://img.shields.io/badge/Android_App-Download_Designer_v1.0.0_(1.26_MB)-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/TechsOneAi/ComposeLintAI/releases/download/1.2.0/ComposeLintAI-Designer-v1.0.0.apk)
 
 ## 📰 Featured In
 
@@ -45,6 +46,27 @@
 | **الترخيص والدعم** | رخصة Apache 2.0 مفتوحة المصدر | ترخيص تجاري عبر [متجر JetBrains الرسمي](https://plugins.jetbrains.com/plugin/36095-composelintai-pro) ([شروط Pro](PRO_TERMS.md)) |
 
 ### 🚀 ComposeLintAI Pro — رابط المتجر الرسمي وعروض إطلاق Product Hunt
+---
+
+## 🎨 محرر ComposeLintAI Designer (تطبيق أندرويد)
+
+صمّم واجهات Jetpack Compose بصرياً من هاتفك مباشرة، وصدّر مشروع Kotlin/Compose نظيفاً وجاهزاً للبناء بصيغة (`.zip`) مع فصل كامل للتوكنات (`AppColors`، `AppDimens`، `AppStrings`) ومكوّنات قابلة لإعادة الاستخدام.
+
+<p align="right">
+  <a href="https://github.com/TechsOneAi/ComposeLintAI/releases/download/1.2.0/ComposeLintAI-Designer-v1.0.0.apk">
+    <img src="https://img.shields.io/badge/تحميل_التطبيق_مباشرة-APK_v1.0.0_(1.26_MB)-16A34A?style=for-the-badge&logo=android&logoColor=white" alt="تحميل ComposeLintAI Designer APK"/>
+  </a>
+  <a href="https://github.com/TechsOneAi/ComposeLintAI/releases/tag/1.2.0">
+    <img src="https://img.shields.io/badge/تفاصيل_الإصدار-Release_Notes-0F172A?style=for-the-badge&logo=github&logoColor=white" alt="تفاصيل الإصدار"/>
+  </a>
+</p>
+
+- **تصميم مرئي مباشر:** سحب وإفلات مع معاينة فورية للوضع الليلي والنهاري، ومكتبة قوالب (`Blueprints`) وعناصر ذرية بمعاينات بصرية مصغّرة.
+- **تصدير معماري نظيف (`.zip`):** حقن عند الطلب للتوكنات، إعادة استخدام ذكية للمكوّنات، ودعم كامل للغة العربية (RTL).
+- **حجم خفيف جداً:** ~1.26 ميجابايت فقط (نسخة Release محسّنة ومحمية بـ R8).
+
+> **تنبيه الترخيص:** رخصة `Apache-2.0` تخص الكود المفتوح في هذا المستودع فقط، بينما يُوزّع تطبيق **ComposeLintAI Designer (APK)** مجاناً للاستخدام كملف تنفيذي مغلق المصدر، وجميع حقوق كوده المصدري محفوظة.
+> 
 
 ثبّت **ComposeLintAI Pro** مباشرة من متجر JetBrains الرسمي:  
 👉 **[تثبيت ComposeLintAI Pro من JetBrains Marketplace](https://plugins.jetbrains.com/plugin/36095-composelintai-pro)**
