@@ -1,38 +1,57 @@
+<div align="center">
+
 # ComposeLintAI 🌉
 
 **Enterprise AI Governance, Architecture Diagnostics & AST Refactoring Platform for Jetpack Compose + MCP Server.**  
 *Govern AI coding agent technical debt, enforce design systems, diagnose architectural health, and execute surgical source code modifications with zero-rebuild live device inspection.*
 
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.20+-purple.svg)](https://kotlinlang.org)
-[![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-1.7.3+-4285F4.svg)](https://developer.android.com/jetpack/compose)
-[![Status](https://img.shields.io/badge/Status-Production%20Ready%20(v1.1.9)-success.svg)]()
-[![DevEx](https://img.shields.io/badge/DevEx-Zero--Rebuild%20Tuning-brightgreen.svg)]()
-[![Latency](https://img.shields.io/badge/Latency-%3C50ms-success.svg)]()
-[![Version](https://img.shields.io/badge/Version-1.1.9-blue.svg)]()
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/TechsOneAi/ComposeLintAI/blob/main/LICENSE)
-[![JetBrains Marketplace](https://img.shields.io/badge/JetBrains%20Marketplace-ComposeLintAI-blue.svg?logo=jetbrains&logoColor=white)](https://plugins.jetbrains.com/plugin/35226-composebridge)
-[![Glama MCP](https://glama.ai/mcp/servers/TechsOneAi/ComposeLintAI/badges/score.svg)](https://glama.ai/mcp/servers/TechsOneAi/ComposeLintAI)
-[![M8ven Score](https://m8ven.ai/badge/mcp/jalal591-compose-bridge-rapm1x)](https://m8ven.ai/mcp/jalal591-compose-bridge-rapm1x?s=readme)
-[![compose-bridge on DevHunt](https://devhunt.org/badge/compose-bridge.svg)](https://devhunt.org/tool/compose-bridge)
-[![Listed on MCP Market](https://mcpmarket.com/badge/server/composebridge.svg?style=compact)](https://mcpmarket.com/server/composebridge?utm_source=readme&utm_medium=badge)
-[![Download Designer APK](https://img.shields.io/badge/Android_App-Download_Designer_v1.0.0_(1.26_MB)-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/TechsOneAi/ComposeLintAI/releases/download/1.2.0/ComposeLintAI-Designer-v1.0.0.apk)
+<p>
+  <a href="https://kotlinlang.org"><img src="https://img.shields.io/badge/Kotlin-2.1.20+-purple.svg" alt="Kotlin" /></a>
+  <a href="https://developer.android.com/jetpack/compose"><img src="https://img.shields.io/badge/Jetpack%20Compose-1.7.3+-4285F4.svg" alt="Jetpack Compose" /></a>
+  <img src="https://img.shields.io/badge/Latency-%3C50ms-success.svg" alt="Latency" />
+  <img src="https://img.shields.io/badge/DevEx-Zero--Rebuild%20Tuning-brightgreen.svg" alt="DevEx" />
+  <a href="https://github.com/TechsOneAi/ComposeLintAI/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License" /></a>
+</p>
 
-<a href="https://www.producthunt.com/products/composebridge?launch=composelintai" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/follow.svg?product_id=1328294&theme=neutral" alt="ComposeLintAI - Pre-write AST linter & MCP server for Jetpack Compose | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+<p>
+  <a href="https://plugins.jetbrains.com/plugin/35226-composebridge"><img src="https://img.shields.io/badge/JetBrains%20Marketplace-ComposeLintAI-blue.svg?logo=jetbrains&logoColor=white" alt="JetBrains Marketplace" /></a>
+  <a href="https://glama.ai/mcp/servers/TechsOneAi/ComposeLintAI"><img src="https://glama.ai/mcp/servers/TechsOneAi/ComposeLintAI/badges/score.svg" alt="Glama MCP" /></a>
+  <a href="https://m8ven.ai/badge/mcp/jalal591-compose-bridge-rapm1x?s=readme"><img src="https://m8ven.ai/badge/mcp/jalal591-compose-bridge-rapm1x" alt="M8ven Score" /></a>
+  <a href="https://mcpmarket.com/server/composebridge?utm_source=readme&utm_medium=badge"><img src="https://mcpmarket.com/badge/server/composebridge.svg?style=compact" alt="Listed on MCP Market" /></a>
+</p>
 
+<p>
+  <a href="https://devhunt.org/tool/compose-bridge" target="_blank"><img src="https://devhunt.org/badge/compose-bridge.svg" alt="compose-bridge on DevHunt" height="50" /></a>
+  &nbsp;&nbsp;
+  <a href="https://www.producthunt.com/products/composebridge?launch=composelintai" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/follow.svg?product_id=1328294&theme=neutral" alt="ComposeLintAI on Product Hunt" height="50" /></a>
+</p>
 
-## 📰 Featured In
+<p>
+  <a href="https://github.com/TechsOneAi/ComposeLintAI/releases/download/1.2.0/ComposeLintAI-Designer-v1.0.0.apk"><img src="https://img.shields.io/badge/Android_App-Download_Designer_v1.0.0_(1.26_MB)-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Download Designer APK" /></a>
+</p>
 
-[![Featured in Android Weekly](https://img.shields.io/badge/Featured%20in-Android%20Weekly%20%23746-3DDC84?style=flat-square&logo=android&logoColor=white)](https://androidweekly.net/issues/issue-746)
-[![Featured in Kotlin Weekly](https://img.shields.io/badge/Featured%20in-Kotlin%20Weekly%20%23537-7F52FF?style=flat-square&logo=kotlin&logoColor=white)](https://mailchi.mp/kotlinweekly/kotlin-weekly-537)
-[![Featured in jetc.dev](https://img.shields.io/badge/Featured%20in-jetc.dev%20%23336-4285F4?style=flat-square&logo=jetpackcompose&logoColor=white)](https://jetc.dev/issues/336.html)
-[![Featured in KMP Weekly](https://img.shields.io/badge/Featured%20in-KMP%20Weekly%20%238-8A2BE2?style=flat-square&logo=kotlin&logoColor=white)](https://kmpweekly.com)
-[![Featured on Droidheim](https://img.shields.io/badge/Featured%20on-Droidheim-00C853?style=flat-square&logo=android&logoColor=white)](https://droidheim.com/articles)
-[![Featured in .monks](https://img.shields.io/badge/Featured%20in-.monks%20Digest-FF6B6B?style=flat-square&logo=rss&logoColor=white)](https://transformation-tech-newsletter.vercel.app/newsletter/2026-11-17)
+### 📰 Featured In
 
-[English](README.md) | [العربية](README_AR.md) | [Community Privacy](PRIVACY.md) | [Pro Terms](PRO_TERMS.md)
+<p>
+  <a href="https://androidweekly.net/issues/issue-746"><img src="https://img.shields.io/badge/Featured%20in-Android%20Weekly%20%23746-3DDC84?style=flat-square&logo=android&logoColor=white" alt="Featured in Android Weekly" /></a>
+  <a href="https://mailchi.mp/kotlinweekly/kotlin-weekly-537"><img src="https://img.shields.io/badge/Featured%20in-Kotlin%20Weekly%20%23537-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Featured in Kotlin Weekly" /></a>
+  <a href="https://jetc.dev/issues/336.html"><img src="https://img.shields.io/badge/Featured%20in-jetc.dev%20%23336%20%26%20%23340-4285F4?style=flat-square&logo=jetpackcompose&logoColor=white" alt="Featured in jetc.dev" /></a>
+  <a href="https://kmpweekly.com"><img src="https://img.shields.io/badge/Featured%20in-KMP%20Weekly%20%238-8A2BE2?style=flat-square&logo=kotlin&logoColor=white" alt="Featured in KMP Weekly" /></a>
+</p>
+
+<p>
+  <a href="https://droidheim.com/articles"><img src="https://img.shields.io/badge/Featured%20on-Droidheim-00C853?style=flat-square&logo=android&logoColor=white" alt="Featured on Droidheim" /></a>
+  <a href="https://transformation-tech-newsletter.vercel.app/newsletter/2026-11-17"><img src="https://img.shields.io/badge/Featured%20in-.monks%20Digest-FF6B6B?style=flat-square&logo=rss&logoColor=white" alt="Featured in .monks" /></a>
+  <a href="https://lissin.com/library/product-hunt-daily"><img src="https://img.shields.io/badge/Podcast-Product%20Hunt%20Daily%20%23233-FF6154?style=flat-square&logo=podcast&logoColor=white" alt="Product Hunt Daily Podcast" /></a>
+</p>
+
+<p>
+  <a href="README.md">English</a> | <a href="README_AR.md">العربية</a> | <a href="PRIVACY.md">Community Privacy</a> | <a href="PRO_TERMS.md">Pro Terms</a>
+</p>
+
+</div>
 
 ---
-
 ## ⚖️ Community vs. Pro Edition Comparison
 
 | Feature / Capability | **ComposeLintAI Community** (Free / Open-Source) | **ComposeLintAI Pro** (Commercial) |
