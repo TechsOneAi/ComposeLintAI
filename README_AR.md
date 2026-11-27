@@ -1,3 +1,5 @@
+<div align="center" dir="rtl">
+
 # ComposeLintAI 🌉
 
 > 📖 **إلى أين تتجه أداة ComposeLintAI؟** اقرأ [وثيقة الرؤية والمعمارية RFC](docs/architecture/RFC-001-vision.md).
@@ -5,31 +7,52 @@
 **منظومة شاملة لحوكمة وكلاء الذكاء الاصطناعي، التشخيص المعماري، والتعديل الجراحي لواجهات Jetpack Compose + خادم MCP.**  
 *حوكمة الديون التقنية للوكلاء لحظياً، فرض منظومة التصميم (Design System)، كشف التشتت المعماري، وإجراء التعديلات الجراحية في الكود المصدري بدقة البايت مع معاينة حية على الأجهزة دون إعادة بناء.*
 
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.1.20+-purple.svg)](https://kotlinlang.org)
-[![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-1.7.3+-4285F4.svg)](https://developer.android.com/jetpack/compose)
-[![Zero Rebuild](https://img.shields.io/badge/DevEx-Zero--Rebuild%20Preview-brightgreen.svg)]()
-[![Latency](https://img.shields.io/badge/Latency-%3C50ms-success.svg)]()
-[![Status](https://img.shields.io/badge/Status-Production%20Ready%20(v1.1.9)-success.svg)]()
-[![Scanner Speed](https://img.shields.io/badge/Scanner%20Speed-137ms%20%2F%20146%20files-brightgreen.svg)]()
-[![Version](https://img.shields.io/badge/Version-1.1.9-blue.svg)]()
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/TechsOneAi/ComposeLintAI/blob/main/LICENSE)
-[![JetBrains Marketplace](https://img.shields.io/badge/JetBrains%20Marketplace-ComposeLintAI-blue.svg?logo=jetbrains&logoColor=white)](https://plugins.jetbrains.com/plugin/35226-composebridge)
-[![M8ven Score](https://m8ven.ai/badge/mcp/jalal591-compose-bridge-rapm1x)](https://m8ven.ai/mcp/jalal591-compose-bridge-rapm1x?s=readme)
-[![Download Designer APK](https://img.shields.io/badge/Android_App-Download_Designer_v1.0.0_(1.26_MB)-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/TechsOneAi/ComposeLintAI/releases/download/1.2.0/ComposeLintAI-Designer-v1.0.0.apk)
-
-## 📰 Featured In
-
-<p align="left">
-  <a href="https://androidweekly.net/issues/issue-746" title="Android Weekly Issue #746">
-    <img alt="Android Weekly Issue #746" src="https://androidweekly.net/issues/issue-746/badge" height="24">
-  </a>
-  &nbsp;
-  <a href="https://jetc.dev/issues/336.html" title="jetc.dev Newsletter Issue #336">
-    <img src="https://img.shields.io/badge/As_Seen_In-jetc.dev_%23336-blue?logo=Jetpack+Compose&logoColor=white" alt="As Seen In - jetc.dev Newsletter Issue #336" height="24">
-  </a>
+<p>
+  <a href="https://kotlinlang.org"><img src="https://img.shields.io/badge/Kotlin-2.1.20+-purple.svg" alt="Kotlin" /></a>
+  <a href="https://developer.android.com/jetpack/compose"><img src="https://img.shields.io/badge/Jetpack%20Compose-1.7.3+-4285F4.svg" alt="Jetpack Compose" /></a>
+  <img src="https://img.shields.io/badge/Latency-%3C50ms-success.svg" alt="Latency" />
+  <img src="https://img.shields.io/badge/Scanner%20Speed-137ms%20%2F%20146%20files-brightgreen.svg" alt="Scanner Speed" />
+  <img src="https://img.shields.io/badge/DevEx-Zero--Rebuild%20Preview-brightgreen.svg" alt="Zero Rebuild" />
+  <a href="https://github.com/TechsOneAi/ComposeLintAI/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License" /></a>
 </p>
 
-[English](https://github.com/TechsOneAi/ComposeLintAI/blob/main/README.md) | [العربية](https://github.com/TechsOneAi/ComposeLintAI/blob/main/README_AR.md) | [خصوصية Community](PRIVACY.md) | [شروط Pro](PRO_TERMS.md)
+<p>
+  <a href="https://plugins.jetbrains.com/plugin/35226-composebridge"><img src="https://img.shields.io/badge/JetBrains%20Marketplace-ComposeLintAI-blue.svg?logo=jetbrains&logoColor=white" alt="JetBrains Marketplace" /></a>
+  <a href="https://glama.ai/mcp/servers/TechsOneAi/ComposeLintAI"><img src="https://glama.ai/mcp/servers/TechsOneAi/ComposeLintAI/badges/score.svg" alt="Glama MCP" /></a>
+  <a href="https://m8ven.ai/badge/mcp/jalal591-compose-bridge-rapm1x?s=readme"><img src="https://m8ven.ai/badge/mcp/jalal591-compose-bridge-rapm1x" alt="M8ven Score" /></a>
+  <a href="https://mcpmarket.com/server/composebridge?utm_source=readme&utm_medium=badge"><img src="https://mcpmarket.com/badge/server/composebridge.svg?style=compact" alt="Listed on MCP Market" /></a>
+</p>
+
+<p>
+  <a href="https://devhunt.org/tool/compose-bridge" target="_blank"><img src="https://devhunt.org/badge/compose-bridge.svg" alt="compose-bridge on DevHunt" height="50" /></a>
+  &nbsp;&nbsp;
+  <a href="https://www.producthunt.com/products/composebridge?launch=composelintai" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/follow.svg?product_id=1328294&theme=neutral" alt="ComposeLintAI on Product Hunt" height="50" /></a>
+</p>
+
+<p>
+  <a href="https://github.com/TechsOneAi/ComposeLintAI/releases/download/1.2.0/ComposeLintAI-Designer-v1.0.0.apk"><img src="https://img.shields.io/badge/Android_App-Download_Designer_v1.0.0_(1.26_MB)-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Download Designer APK" /></a>
+</p>
+
+### 📰 أبرز الظهورات الإعلامية
+
+<p>
+  <a href="https://androidweekly.net/issues/issue-746"><img src="https://img.shields.io/badge/Featured%20in-Android%20Weekly%20%23746-3DDC84?style=flat-square&logo=android&logoColor=white" alt="Android Weekly #746" /></a>
+  <a href="https://mailchi.mp/kotlinweekly/kotlin-weekly-537"><img src="https://img.shields.io/badge/Featured%20in-Kotlin%20Weekly%20%23537-7F52FF?style=flat-square&logo=kotlin&logoColor=white" alt="Kotlin Weekly #537" /></a>
+  <a href="https://jetc.dev/issues/336.html"><img src="https://img.shields.io/badge/Featured%20in-jetc.dev%20%23336%20%26%20%23340-4285F4?style=flat-square&logo=jetpackcompose&logoColor=white" alt="jetc.dev #336 & #340" /></a>
+  <a href="https://kmpweekly.com"><img src="https://img.shields.io/badge/Featured%20in-KMP%20Weekly%20%238-8A2BE2?style=flat-square&logo=kotlin&logoColor=white" alt="KMP Weekly #8" /></a>
+</p>
+
+<p>
+  <a href="https://droidheim.com/articles"><img src="https://img.shields.io/badge/Featured%20on-Droidheim-00C853?style=flat-square&logo=android&logoColor=white" alt="Droidheim" /></a>
+  <a href="https://transformation-tech-newsletter.vercel.app/newsletter/2026-11-17"><img src="https://img.shields.io/badge/Featured%20in-.monks%20Digest-FF6B6B?style=flat-square&logo=rss&logoColor=white" alt=".monks Digest" /></a>
+  <a href="https://lissin.com/library/product-hunt-daily"><img src="https://img.shields.io/badge/Podcast-Product%20Hunt%20Daily%20%23233-FF6154?style=flat-square&logo=podcast&logoColor=white" alt="Product Hunt Daily #233" /></a>
+</p>
+
+<p>
+  <a href="https://github.com/TechsOneAi/ComposeLintAI/blob/main/README.md">English</a> | <a href="https://github.com/TechsOneAi/ComposeLintAI/blob/main/README_AR.md">العربية</a> | <a href="PRIVACY.md">خصوصية Community</a> | <a href="PRO_TERMS.md">شروط Pro</a>
+</p>
+
+</div>
 
 ---
 
